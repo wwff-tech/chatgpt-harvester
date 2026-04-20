@@ -119,8 +119,8 @@ def group_by_date(messages: list[Message]) -> dict[str, list[Message]]:
 # ---------------------------------------------------------------------------
 
 def parse_items(text: str) -> list[ParsedItem]:
-    """Split assistant text on ## N) headings and extract structured fields."""
-    pattern = r"^## (\d+)\) (.+)$"
+    """Split assistant text on ## N) or ## N. headings and extract structured fields."""
+    pattern = r"^## (\d+)[).] (.+)$"
     splits = re.split(pattern, text, flags=re.MULTILINE)
 
     # Strip trailing non-item content from the last body.  After the
@@ -138,6 +138,8 @@ def parse_items(text: str) -> list[ParsedItem]:
             break
         number = int(splits[i])
         heading = splits[i + 1].strip()
+        # Strip bold markers that wrap the heading (e.g. **Heading**)
+        heading = re.sub(r"^\*\*(.+)\*\*$", r"\1", heading)
         body = splits[i + 2] if i + 2 < len(splits) else ""
 
         item = ParsedItem(
