@@ -123,6 +123,14 @@ def parse_items(text: str) -> list[ParsedItem]:
     pattern = r"^## (\d+)\) (.+)$"
     splits = re.split(pattern, text, flags=re.MULTILINE)
 
+    # Strip trailing non-item content from the last body.  After the
+    # last ## N) item, the assistant often appends observations / meta
+    # commentary separated by --- and a top-level heading (# …).
+    if len(splits) >= 4:
+        trailer = re.search(r"\n---\s*\n+(?=#\s)", splits[-1])
+        if trailer:
+            splits[-1] = splits[-1][:trailer.start()]
+
     items = []
     # splits: [preamble, num, heading, body, num, heading, body, ...]
     for i in range(1, len(splits), 3):
@@ -224,6 +232,16 @@ def slugify(text: str, max_len: int = 60) -> str:
     return text[:max_len].rstrip("-")
 
 
+def _feed_dir(meta: dict) -> str:
+    conv_id = meta.get("conversation_id") or ""
+    label = meta.get("label") or meta.get("title") or ""
+    slug = slugify(label) if label else ""
+    short = conv_id[:8]
+    if slug and short:
+        return f"{slug}__{short}"
+    return slug or short or "unknown"
+
+
 # ---------------------------------------------------------------------------
 #  Output writers
 # ---------------------------------------------------------------------------
@@ -247,7 +265,9 @@ def write_daily(date: str, messages: list[Message], meta: dict, outdir: Path):
         body_parts.append(msg.text)
 
     content = fm + "\n\n" + "\n\n".join(body_parts) + "\n"
-    path = outdir / f"{date}.md"
+    feed_dir = outdir / _feed_dir(meta)
+    feed_dir.mkdir(parents=True, exist_ok=True)
+    path = feed_dir / f"{date}.md"
     path.write_text(content)
     print(f"  wrote {path}")
 
@@ -272,6 +292,9 @@ def write_items(date: str, messages: list[Message], meta: dict, outdir: Path):
         write_daily(date, messages, meta, outdir)
         return
 
+    feed_dir = outdir / _feed_dir(meta)
+    feed_dir.mkdir(parents=True, exist_ok=True)
+
     for item in chosen_items:
             fm = _frontmatter({
                 "date": date,
@@ -289,7 +312,7 @@ def write_items(date: str, messages: list[Message], meta: dict, outdir: Path):
             slug = slugify(item.heading)
             filename = f"{date}-{item.number:02d}-{slug}.md"
             content = fm + "\n\n" + item.raw + "\n"
-            path = outdir / filename
+            path = feed_dir / filename
             path.write_text(content)
             print(f"  wrote {path}")
 
