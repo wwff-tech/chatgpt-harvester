@@ -119,28 +119,44 @@ def group_by_date(messages: list[Message]) -> dict[str, list[Message]]:
 # ---------------------------------------------------------------------------
 
 def parse_items(text: str) -> list[ParsedItem]:
-    """Split assistant text on ## N) or ## N. headings and extract structured fields."""
-    pattern = r"^## (\d+)[).] (.+)$"
+    """Split assistant text on numbered headings and extract structured fields.
+
+    Handles both heading styles the feeds have used over time:
+    ``## 1) Heading`` (one or two hashes, ``)`` or ``.`` separator) and
+    ``# 1. Heading``.  The heading level and separator are captured so the
+    reconstructed ``raw`` stays faithful to the source.
+    """
+    # Capture: (hashes)(number)(separator)(heading)
+    pattern = r"^(#{1,2}) (\d+)([).]) (.+)$"
     splits = re.split(pattern, text, flags=re.MULTILINE)
 
-    # Strip trailing non-item content from the last body.  After the
-    # last ## N) item, the assistant often appends observations / meta
-    # commentary separated by --- and a top-level heading (# …).
-    if len(splits) >= 4:
-        trailer = re.search(r"\n---\s*\n+(?=#\s)", splits[-1])
+    # Strip trailing non-item content from the last body.  After the last
+    # numbered item, the assistant often appends meta sections (e.g.
+    # "# Cross-Cutting Insight", "## Confidence").  These are headings at the
+    # same level as the item headings but without a number, whereas an item's
+    # own subsections are always at a deeper level.  Cut the last body at the
+    # first same-or-shallower heading that is not itself a numbered item.
+    if len(splits) >= 6:
+        level = len(splits[-5])  # hashes of the last item heading
+        last = splits[-1]
+        trailer = re.search(rf"^#{{1,{level}}} (?!\d+[).]).+", last, flags=re.MULTILINE)
         if trailer:
-            splits[-1] = splits[-1][:trailer.start()]
+            cut = last[:trailer.start()]
+            # Drop a trailing horizontal-rule separator left behind by the cut.
+            splits[-1] = re.sub(r"\n+-{3,}\s*\n*$", "\n", cut)
 
     items = []
-    # splits: [preamble, num, heading, body, num, heading, body, ...]
-    for i in range(1, len(splits), 3):
-        if i + 2 > len(splits):
+    # splits: [preamble, hashes, num, sep, heading, body, hashes, num, sep, ...]
+    for i in range(1, len(splits), 5):
+        if i + 4 > len(splits):
             break
-        number = int(splits[i])
-        heading = splits[i + 1].strip()
+        hashes = splits[i]
+        number = int(splits[i + 1])
+        sep = splits[i + 2]
+        heading = splits[i + 3].strip()
         # Strip bold markers that wrap the heading (e.g. **Heading**)
         heading = re.sub(r"^\*\*(.+)\*\*$", r"\1", heading)
-        body = splits[i + 2] if i + 2 < len(splits) else ""
+        body = splits[i + 4]
 
         item = ParsedItem(
             number=number,
@@ -151,7 +167,7 @@ def parse_items(text: str) -> list[ParsedItem]:
             interests=_extract_list_field(body, "Matches Interests"),
             fmt=_extract_field(body, "Format"),
             points=_extract_points(body),
-            raw=f"## {number}) {heading}\n{body}".rstrip(),
+            raw=f"{hashes} {number}{sep} {heading}\n{body}".rstrip(),
         )
         items.append(item)
 
