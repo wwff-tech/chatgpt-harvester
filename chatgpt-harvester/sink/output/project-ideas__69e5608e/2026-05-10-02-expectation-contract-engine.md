@@ -1,14 +1,14 @@
 ---
 date: 2026-05-10
 item_number: 2
-title: “Expectation Contract Engine”
+title: Expectation Contract Engine
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Expectation Contract Engine”
+# 2. Expectation Contract Engine
 
 
 **Problem**  
@@ -26,7 +26,7 @@ When these drift, coordination breaks.
 
 **Tech hints**
 - Schema + behavioural contracts  
-- Policy enforcement with entity["software","Open Policy Agent","policy engine"]  
+- Policy enforcement with Open Policy Agent  
 - Latency SLO assertions  
 - Contract testing frameworks  
 

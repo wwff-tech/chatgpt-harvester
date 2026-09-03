@@ -2,6 +2,7 @@
 date: 2026-05-21
 item_number: 3
 title: Observability Completeness Scanner
+summary: AI-generated code frequently underperforms on observability concerns.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -15,7 +16,7 @@ label: project ideas
 
 AI-generated code frequently underperforms on observability concerns.
 
-Humans continue fixing logs and telemetry after generation. citeturn0academia56
+Humans continue fixing logs and telemetry after generation. 
 
 Most organisations lack a way to assess observability coverage systematically.
 

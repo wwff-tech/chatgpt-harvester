@@ -21,7 +21,7 @@ Systems become complex gradually, but there’s no clear view of *how complexity
 
 **Tech hints**
 - Graph complexity metrics (node/edge growth, centrality)  
-- Integration with entity["software","OpenTelemetry","observability framework"] traces  
+- Integration with OpenTelemetry traces  
 - Versioned snapshots  
 - Time-series analysis  
 

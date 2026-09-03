@@ -2,6 +2,7 @@
 date: 2026-05-23
 item_number: 6
 title: Silent Failure Observatory
+summary: "Modern AI systems increasingly fail silently:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -27,7 +28,7 @@ Modern AI systems increasingly fail silently:
 - escalating costs,
 - behavioural drift.
 
-This is becoming a major observability theme. citeturn0search7turn0search9turn0search13
+This is becoming a major observability theme. 
 
 ## Approaches
 
@@ -93,6 +94,6 @@ High
 
 ## References
 
-- AI observability trends citeturn0search7turn0search9turn0search13
+- AI observability trends 
 
 ---

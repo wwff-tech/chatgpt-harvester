@@ -1,14 +1,14 @@
 ---
 date: 2026-05-16
 item_number: 3
-title: “Agent Decision Evaluator”
+title: Agent Decision Evaluator
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Agent Decision Evaluator”
+# 3. Agent Decision Evaluator
 
 
 **Problem**  
@@ -25,7 +25,7 @@ Agent decisions are rarely evaluated beyond immediate success:
 **Tech hints**
 - Structured traces  
 - Reinforcement-style scoring  
-- Integration with protocols like entity["software","Model Context Protocol","AI interaction protocol"]  
+- Integration with protocols like Model Context Protocol  
 - Experiment tracking  
 
 **Formats**

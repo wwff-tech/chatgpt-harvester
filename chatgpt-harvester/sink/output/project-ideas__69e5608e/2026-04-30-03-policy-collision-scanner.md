@@ -1,14 +1,14 @@
 ---
 date: 2026-04-30
 item_number: 3
-title: “Policy Collision Scanner”
+title: Policy Collision Scanner
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 3. “Policy Collision Scanner”
+## 3. Policy Collision Scanner
 
 
 **Problem**  
@@ -20,7 +20,7 @@ Security, compliance, and operational policies can conflict or override each oth
 - Highlight conflicting rules  
 
 **Tech hints**
-- Policy-as-code (e.g., entity["software","Open Policy Agent","policy engine"])  
+- Policy-as-code (e.g., Open Policy Agent)  
 - Static analysis + rule evaluation  
 - Graph modelling of policy relationships  
 

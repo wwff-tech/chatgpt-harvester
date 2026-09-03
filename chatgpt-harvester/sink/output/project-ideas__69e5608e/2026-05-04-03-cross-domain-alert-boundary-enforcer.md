@@ -1,14 +1,14 @@
 ---
 date: 2026-05-04
 item_number: 3
-title: “Cross-Domain Alert Boundary Enforcer”
+title: Cross-Domain Alert Boundary Enforcer
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 3. “Cross-Domain Alert Boundary Enforcer”
+## 3. Cross-Domain Alert Boundary Enforcer
 
 
 **Problem**  
@@ -21,7 +21,7 @@ Alerts leak across teams and domains, causing confusion, duplication, and owners
 
 **Tech hints**
 - Tag-based routing  
-- Integration with alerting systems (e.g., entity["software","Prometheus","monitoring toolkit"], entity["software","PagerDuty","incident management platform"])  
+- Integration with alerting systems (e.g., Prometheus, PagerDuty)  
 - Policy-driven routing logic  
 
 **Formats**

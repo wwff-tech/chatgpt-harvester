@@ -22,7 +22,7 @@ Alerting systems, logs, and agent outputs generate overwhelming volumes of signa
 **Tech hints**
 - Scoring models (weighted heuristics + ML ranking)  
 - Deduplication via hashing/similarity  
-- Integration with observability stacks (e.g., entity["software","Prometheus","monitoring toolkit"], entity["software","Grafana","visualisation platform"])  
+- Integration with observability stacks (e.g., Prometheus, Grafana)  
 
 **Formats**
 - Alerting middleware  

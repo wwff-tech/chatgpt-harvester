@@ -1,14 +1,15 @@
 ---
 date: 2026-05-14
 item_number: 3
-title: “Agent Prompt Minimiser”
+title: Agent Prompt Minimiser
+summary: This increases cost, latency, and unpredictability.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Agent Prompt Minimiser”
+# 3. Agent Prompt Minimiser
 
 
 **Problem**  
@@ -28,7 +29,7 @@ This increases cost, latency, and unpredictability.
 - Token-level analysis  
 - A/B testing of prompt variants  
 - Integration with agent frameworks  
-- Compatibility with entity["software","Model Context Protocol","AI interaction protocol"]  
+- Compatibility with Model Context Protocol  
 
 **Formats**
 - CLI tool  

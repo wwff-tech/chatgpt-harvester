@@ -1,14 +1,14 @@
 ---
 date: 2026-05-15
 item_number: 2
-title: “Runtime Assumption Validator”
+title: Runtime Assumption Validator
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Runtime Assumption Validator”
+# 2. Runtime Assumption Validator
 
 
 **Problem**  
@@ -20,9 +20,9 @@ Even when assumptions are known, they are rarely validated continuously.
 - Trigger alerts or mitigations  
 
 **Tech hints**
-- Policy-as-code using entity["software","Open Policy Agent","policy engine"]  
+- Policy-as-code using Open Policy Agent  
 - SLO-based assertions  
-- Integration with metrics pipelines (e.g., entity["software","Prometheus","monitoring toolkit"])  
+- Integration with metrics pipelines (e.g., Prometheus)  
 - Lightweight rule engine  
 
 **Formats**

@@ -1,14 +1,14 @@
 ---
 date: 2026-05-15
 item_number: 5
-title: “Retry Safety Analyzer”
+title: Retry Safety Analyzer
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 5. “Retry Safety Analyzer”
+# 5. Retry Safety Analyzer
 
 
 **Problem**  
@@ -23,7 +23,7 @@ Systems assume retries are safe, but:
 - Suggest safeguards (idempotency keys, backoff strategies)  
 
 **Tech hints**
-- Distributed tracing analysis (via entity["software","OpenTelemetry","observability framework"])  
+- Distributed tracing analysis (via OpenTelemetry)  
 - Idempotency detection heuristics  
 - Integration with service meshes  
 

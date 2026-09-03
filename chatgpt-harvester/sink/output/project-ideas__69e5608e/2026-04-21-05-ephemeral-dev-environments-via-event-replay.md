@@ -1,14 +1,14 @@
 ---
 date: 2026-04-21
 item_number: 5
-title: “Ephemeral Dev Environments via Event Replay”
+title: Ephemeral Dev Environments via Event Replay
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 5. “Ephemeral Dev Environments via Event Replay”
+## 5. Ephemeral Dev Environments via Event Replay
 
 
 **Problem**  

@@ -1,14 +1,15 @@
 ---
 date: 2026-05-10
 item_number: 6
-title: “Cognitive Coordination Assistant”
+title: Cognitive Coordination Assistant
+summary: Especially pronounced in ADHD/ASD profiles.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 6. “Cognitive Coordination Assistant”
+# 6. Cognitive Coordination Assistant
 
 
 **Problem**  

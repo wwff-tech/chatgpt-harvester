@@ -1,14 +1,14 @@
 ---
 date: 2026-04-23
 item_number: 5
-title: “API Abuse Anomaly Detector (Developer-First)”
+title: API Abuse Anomaly Detector (Developer-First)
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 5. “API Abuse Anomaly Detector (Developer-First)”
+## 5. API Abuse Anomaly Detector (Developer-First)
 
 
 **Problem**  

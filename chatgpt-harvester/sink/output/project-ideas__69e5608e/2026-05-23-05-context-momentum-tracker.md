@@ -2,6 +2,7 @@
 date: 2026-05-23
 item_number: 5
 title: Context Momentum Tracker
+summary: "Many ADHD productivity systems optimise:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -23,7 +24,7 @@ They largely ignore:
 
 > activation energy.
 
-Research and community discussions continue to emphasise body doubling, external structure, and interruption recovery as central productivity factors. citeturn0search4turn0search20turn0academia44
+Research and community discussions continue to emphasise body doubling, external structure, and interruption recovery as central productivity factors. 
 
 ## Approaches
 
@@ -91,7 +92,7 @@ Very High
 
 ## References
 
-- Body doubling research citeturn0academia44turn0search4turn0search16
-- ADHD productivity discussions citeturn0search12turn0search20
+- Body doubling research 
+- ADHD productivity discussions 
 
 ---

@@ -2,6 +2,7 @@
 date: 2026-05-22
 item_number: 3
 title: Agent Boundary Auditor
+summary: "Current agent systems increasingly possess:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -24,7 +25,7 @@ Organisations struggle to understand:
 
 > What can this agent actually do?
 
-Agent security research increasingly highlights memory, delegation, credential handling, and inter-agent trust as major attack surfaces. citeturn0academia20turn0news17
+Agent security research increasingly highlights memory, delegation, credential handling, and inter-agent trust as major attack surfaces. 
 
 ## Approaches
 
@@ -53,8 +54,8 @@ Identify excessive privilege and escalation paths.
 
 Use:
 
-- entity["software","Model Context Protocol","AI interaction protocol"]
-- entity["software","Open Policy Agent","policy engine"]
+- Model Context Protocol
+- Open Policy Agent
 
 ## Suggested Formats
 
@@ -95,7 +96,7 @@ High
 
 ## References
 
-- Agent security survey research citeturn0academia20
-- Agent governance discussions citeturn0news14turn0news17
+- Agent security survey research 
+- Agent governance discussions 
 
 ---

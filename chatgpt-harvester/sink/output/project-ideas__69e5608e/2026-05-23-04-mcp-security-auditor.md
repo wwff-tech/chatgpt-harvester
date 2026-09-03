@@ -2,6 +2,7 @@
 date: 2026-05-23
 item_number: 4
 title: MCP Security Auditor
+summary: "The rapid rise of MCP ecosystems introduces:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -20,7 +21,7 @@ The rapid rise of MCP ecosystems introduces:
 - prompt injection paths,
 - registry compromise risks.
 
-Recent disclosures demonstrated serious MCP-related attack surfaces. citeturn0news41
+Recent disclosures demonstrated serious MCP-related attack surfaces. 
 
 ## Approaches
 
@@ -86,7 +87,7 @@ High
 
 ## References
 
-- entity["software","Model Context Protocol","AI interaction protocol"]
-- MCP vulnerability reporting citeturn0news41
+- Model Context Protocol
+- MCP vulnerability reporting 
 
 ---

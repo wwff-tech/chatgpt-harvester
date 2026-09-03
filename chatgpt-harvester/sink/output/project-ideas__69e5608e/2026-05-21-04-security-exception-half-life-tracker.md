@@ -2,6 +2,7 @@
 date: 2026-05-21
 item_number: 4
 title: Security Exception Half-Life Tracker
+summary: Treat exceptions as technical debt with interest.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -47,7 +48,7 @@ Calculate organisational risk accumulation.
 
 Use:
 
-entity["software","Open Policy Agent","policy engine"]
+Open Policy Agent
 
 ## Suggested Formats
 

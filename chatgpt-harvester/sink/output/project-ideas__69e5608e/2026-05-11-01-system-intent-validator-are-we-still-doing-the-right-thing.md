@@ -21,7 +21,7 @@ Systems drift from original intent while still passing local checks (tests, SLOs
 
 **Tech hints**
 - Intent-as-code (high-level invariants)  
-- Policy engines like entity["software","Open Policy Agent","policy engine"]  
+- Policy engines like Open Policy Agent  
 - Graph-based system modelling  
 - Periodic validation jobs  
 

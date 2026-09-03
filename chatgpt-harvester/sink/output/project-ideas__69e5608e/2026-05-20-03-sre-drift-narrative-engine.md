@@ -1,14 +1,15 @@
 ---
 date: 2026-05-20
 item_number: 3
-title: “SRE Drift Narrative Engine”
+title: SRE Drift Narrative Engine
+summary: "Very few explain: > “How did we end up here?”"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “SRE Drift Narrative Engine”
+# 3. SRE Drift Narrative Engine
 
 
 ## Problem
@@ -38,7 +39,7 @@ Very few explain:
 - “Git blame for infra state”  
 
 ## Why it is a good fit
-- Drift is becoming a major issue in autonomous operations citeturn0academia46turn0academia53
+- Drift is becoming a major issue in autonomous operations 
 - Existing tooling focuses on detection, not explanation  
 
 ## Why it is not a good fit

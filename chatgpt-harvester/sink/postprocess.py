@@ -96,7 +96,46 @@ def _should_include(msg: dict) -> bool:
 def _extract_text(msg: dict) -> str:
     parts = msg.get("content", {}).get("parts", [])
     text_parts = [p for p in parts if isinstance(p, str)]
-    return "\n".join(text_parts).strip()
+    return clean_text("\n".join(text_parts).strip())
+
+
+# ---------------------------------------------------------------------------
+#  Text cleanup
+# ---------------------------------------------------------------------------
+
+# ChatGPT wraps several kinds of UI markup in private-use codepoints:
+#
+#   \ue200cite\ue202turn0news53\ue202turn0search18\ue201
+#   \ue200entity\ue202["software","Virtualizor","VPS control panel"]\ue201
+#   \ue200url\ue202Wiz\ue202turn0news0\ue201
+#
+# Two of them carry text worth keeping -- an entity's name and a link's label
+# -- so they are unwrapped rather than dropped. The rest (cite, memcite,
+# navlist, image_group) are navigation chrome and go entirely. Stripping the
+# lot indiscriminately silently eats entity names mid-sentence.
+_MARKER_RE = re.compile(
+    "\ue200(?P<kind>[^\ue201\ue202]*)(?:\ue202(?P<body>.*?))?\ue201", re.DOTALL
+)
+_ENTITY_NAME_RE = re.compile(r'^\["[^"]*","([^"]*)"')
+_STRAY_MARKER_RE = re.compile("[\ue200-\ue20f]")
+
+
+def _unwrap_marker(match: re.Match) -> str:
+    kind = match.group("kind")
+    body = match.group("body") or ""
+    if kind == "entity":
+        name = _ENTITY_NAME_RE.match(body)
+        return name.group(1) if name else ""
+    if kind == "url":
+        # body is "<link label>\ue202<citation>"
+        return body.split("\ue202")[0]
+    return ""
+
+
+def clean_text(text: str) -> str:
+    """Strip ChatGPT UI markup that has no meaning outside the web client."""
+    text = _MARKER_RE.sub(_unwrap_marker, text)
+    return _STRAY_MARKER_RE.sub("", text)
 
 
 # ---------------------------------------------------------------------------
@@ -118,92 +157,192 @@ def group_by_date(messages: list[Message]) -> dict[str, list[Message]]:
 #  Item parsing
 # ---------------------------------------------------------------------------
 
+# The feeds have used three item layouts over time. Patterns are tried in
+# order and the first that matches anything wins, so a feed still using the
+# original layout parses exactly as it always did.
+_ITEM_PATTERNS = (
+    # Original, and the July 2026 variant that kept its headings:
+    #   "## 1) Heading"   "# 1. Heading"
+    re.compile(r"^(?P<prefix>#{1,2}) (?P<num>\d+)(?P<sep>[).]) (?P<heading>.+)$", re.MULTILINE),
+    # August 2026 onward:
+    #   '### 1. **"Heading"** - Long-form'
+    re.compile(r"^(?P<prefix>#{3,4}) (?P<num>\d+)(?P<sep>[).]) (?P<heading>.+)$", re.MULTILINE),
+    # Briefly, in early August 2026, with no heading markup at all:
+    #   '**1. "Heading" - Long-form**'
+    re.compile(r"^(?P<prefix>)\*\*(?P<num>\d+)(?P<sep>[).]) (?P<heading>.+?)\*\*[ \t]*$", re.MULTILINE),
+)
+
+# A trailing "- Long-form" / "- Short post" on a heading is the format field
+# by another name; the later layouts carry it there instead of in a field.
+_FORMAT_SUFFIX_RE = re.compile(
+    r"\s*[—–-]\s*\**(Long[- ]form|Short post|Short)\**\s*$", re.IGNORECASE
+)
+
+
 def parse_items(text: str) -> list[ParsedItem]:
-    """Split assistant text on numbered headings and extract structured fields.
+    """Split assistant text on numbered item headings and extract fields.
 
-    Handles both heading styles the feeds have used over time:
-    ``## 1) Heading`` (one or two hashes, ``)`` or ``.`` separator) and
-    ``# 1. Heading``.  The heading level and separator are captured so the
-    reconstructed ``raw`` stays faithful to the source.
+    Fields missing from a given layout are left unset rather than failing the
+    parse, so a format change costs metadata but never the item itself.
     """
-    # Capture: (hashes)(number)(separator)(heading)
-    pattern = r"^(#{1,2}) (\d+)([).]) (.+)$"
-    splits = re.split(pattern, text, flags=re.MULTILINE)
+    text = clean_text(text)
 
-    # Strip trailing non-item content from the last body.  After the last
-    # numbered item, the assistant often appends meta sections (e.g.
-    # "# Cross-Cutting Insight", "## Confidence").  These are headings at the
-    # same level as the item headings but without a number, whereas an item's
-    # own subsections are always at a deeper level.  Cut the last body at the
-    # first same-or-shallower heading that is not itself a numbered item.
-    if len(splits) >= 6:
-        level = len(splits[-5])  # hashes of the last item heading
-        last = splits[-1]
-        trailer = re.search(rf"^#{{1,{level}}} (?!\d+[).]).+", last, flags=re.MULTILINE)
-        if trailer:
-            cut = last[:trailer.start()]
-            # Drop a trailing horizontal-rule separator left behind by the cut.
-            splits[-1] = re.sub(r"\n+-{3,}\s*\n*$", "\n", cut)
+    matches: list[re.Match] = []
+    for pattern in _ITEM_PATTERNS:
+        matches = list(pattern.finditer(text))
+        if matches:
+            break
+    if not matches:
+        return []
 
     items = []
-    # splits: [preamble, hashes, num, sep, heading, body, hashes, num, sep, ...]
-    for i in range(1, len(splits), 5):
-        if i + 4 > len(splits):
-            break
-        hashes = splits[i]
-        number = int(splits[i + 1])
-        sep = splits[i + 2]
-        heading = splits[i + 3].strip()
-        # Strip bold markers that wrap the heading (e.g. **Heading**)
-        heading = re.sub(r"^\*\*(.+)\*\*$", r"\1", heading)
-        body = splits[i + 4]
+    for i, match in enumerate(matches):
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        body = text[match.end():end]
+        if i == len(matches) - 1:
+            body = _trim_trailer(body, match.group("prefix"))
 
-        item = ParsedItem(
-            number=number,
+        heading, heading_fmt = _clean_heading(match.group("heading"))
+
+        items.append(ParsedItem(
+            number=int(match.group("num")),
             heading=heading,
-            title=_extract_field(body, "Title"),
-            summary=_extract_field(body, "Summary"),
+            title=_extract_field(body, "Title", "Suggested title"),
+            summary=_extract_field(body, "Summary") or _first_paragraph(body),
             angle=_extract_field(body, "Angle"),
-            interests=_extract_list_field(body, "Matches Interests"),
-            fmt=_extract_field(body, "Format"),
+            interests=_extract_list_field(
+                body, "Matches Interests", "Matches your interests", "Matches"
+            ),
+            fmt=_extract_field(body, "Format") or heading_fmt,
             points=_extract_points(body),
-            raw=f"{hashes} {number}{sep} {heading}\n{body}".rstrip(),
-        )
-        items.append(item)
+            # Rebuild from the cleaned heading rather than the matched text, so
+            # the body renders consistently whichever layout it came from. The
+            # bold-paragraph layout has no heading marker, so give it one.
+            raw=f"{match.group('prefix') or '##'} {int(match.group('num'))}"
+                f"{match.group('sep')} {heading}\n{body}".rstrip(),
+        ))
 
     return items
 
 
-def _extract_field(body: str, name: str) -> str | None:
-    match = re.search(rf"- \*\*{name}:\*\*\s*(.+)", body)
-    if not match:
-        return None
-    val = match.group(1).strip()
-    # Strip surrounding italic markers and bold markers
-    val = re.sub(r"^\*\*(.+)\*\*$", r"\1", val)
-    val = re.sub(r"^\*(.+)\*$", r"\1", val)
-    return val
+def _trim_trailer(body: str, prefix: str) -> str:
+    """Drop meta sections that follow the final item.
+
+    After the last numbered item the assistant often appends sections such as
+    "## Cross-Cutting Insight" or "### What I'd actually write". These sit at
+    the same heading level as the items themselves, whereas an item's own
+    subsections are always deeper.
+    """
+    level = len(prefix) or 2
+    trailer = re.search(rf"^#{{1,{level}}} (?!\d+[).]).+", body, flags=re.MULTILINE)
+    if not trailer:
+        return body
+    cut = body[:trailer.start()]
+    # Drop a trailing horizontal-rule separator left behind by the cut.
+    return re.sub(r"\n+-{3,}\s*\n*$", "\n", cut)
 
 
-def _extract_list_field(body: str, name: str) -> list[str]:
-    val = _extract_field(body, name)
-    if not val:
+def _clean_heading(heading: str) -> tuple[str, str | None]:
+    """Strip decoration from a heading, returning (heading, format or None)."""
+    fmt = None
+    suffix = _FORMAT_SUFFIX_RE.search(heading)
+    if suffix:
+        fmt = suffix.group(1)
+        heading = heading[:suffix.start()]
+    return _strip_emphasis(heading), fmt
+
+
+def _strip_emphasis(value: str) -> str:
+    """Remove wrapping bold, italic or quote marks from a value."""
+    value = re.sub(r"^\*\*(.+)\*\*$", r"\1", value.strip()).strip()
+    value = re.sub(r"^\*(.+)\*$", r"\1", value).strip()
+    # Only unwrap quotes that enclose the whole value: headings such as
+    # '"Breakglass" Accounts as a Backdoor' must survive intact.
+    quoted = re.match(r"^[“\"](.+)[”\"]$", value)
+    if quoted:
+        value = quoted.group(1).strip()
+    return value
+
+
+def _extract_field(body: str, *names: str) -> str | None:
+    """Value of a labelled field, in any of the layouts the feeds have used.
+
+    Longest alias first: the alternation is ordered, so "Matches Interests"
+    must be offered before the bare "Matches".
+    """
+    alt = "|".join(re.escape(name) for name in names)
+    # (\S.*) rather than (.+): the label is often followed by trailing spaces,
+    # which .+ will happily match, yielding an empty field.
+    patterns = (
+        rf"^[ \t]*[-*] \*\*(?:{alt}):?\*\*[ \t]*(\S.*)",    # - **Title:** value
+        rf"^\*\*(?:{alt}):?\*\*[ \t]*\n+[ \t]*(\S.*)",      # **Summary:**\nvalue
+        rf"^\*\*(?:{alt}):?\*\*[ \t]*(\S.*)",                # **Angle:** value
+    )
+    for pattern in patterns:
+        match = re.search(pattern, body, flags=re.IGNORECASE | re.MULTILINE)
+        if match:
+            return _strip_emphasis(match.group(1)) or None
+    return None
+
+
+def _extract_list_field(body: str, *names: str) -> list[str]:
+    value = _extract_field(body, *names)
+    if value and not value.startswith(("-", "*")):
+        return [part.strip(" .") for part in value.split(",") if part.strip(" .")]
+
+    # Block form: the label sits alone on its line with bullets beneath it.
+    alt = "|".join(re.escape(name) for name in names)
+    label = re.search(
+        rf"^\*\*(?:{alt}):?\*\*[ \t]*$", body, flags=re.IGNORECASE | re.MULTILINE
+    )
+    if not label:
         return []
-    return [s.strip() for s in val.split(",")]
+
+    values = []
+    for line in body[label.end():].lstrip("\n").split("\n"):
+        bullet = re.match(r"^[ \t]*[-*] (.+)", line)
+        if bullet:
+            values.append(_strip_emphasis(bullet.group(1)).strip(" ."))
+        elif line.strip():
+            break
+    return values
+
+
+def _first_paragraph(body: str) -> str | None:
+    """Opening prose paragraph of an item body.
+
+    The August 2026 layout dropped the Summary field; its opening paragraph
+    plays the same role, so fall back to that rather than leaving it unset.
+    """
+    for block in body.split("\n\n"):
+        block = block.strip()
+        if not block or block.startswith(("**", "-", "*", "#", ">", "|", "`")):
+            continue
+        # Skip parenthetical asides and one-line stubs: a paragraph standing in
+        # for a summary is always a sentence or more.
+        if len(block) < 40:
+            continue
+        return " ".join(block.split())
+    return None
 
 
 def _extract_points(body: str) -> list[str]:
+    """Bullets under a "Suggested points to cover" label.
+
+    The label lost its capitals and its indentation when the layout changed in
+    July 2026, so match case-insensitively and accept bullets at any depth.
+    """
     in_points = False
     points = []
     for line in body.split("\n"):
-        if "Suggested Points to Cover" in line:
+        if "suggested points to cover" in line.lower():
             in_points = True
             continue
         if in_points:
-            m = re.match(r"\s+- (.+)", line)
-            if m:
-                points.append(m.group(1).strip())
-            elif line.strip() and not line.startswith(" "):
+            bullet = re.match(r"[ \t]*[-*] (.+)", line)
+            if bullet:
+                points.append(_strip_emphasis(bullet.group(1)))
+            elif line.strip():
                 break
     return points
 

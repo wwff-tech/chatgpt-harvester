@@ -20,7 +20,7 @@ Outputs (data, decisions, deployments) are not reliably traceable back to their 
 - Enable reverse traversal (output → full history)  
 
 **Tech hints**
-- Extend entity["software","OpenTelemetry","observability framework"] with lineage events  
+- Extend OpenTelemetry with lineage events  
 - DAG-based lineage graphs  
 - Content hashing for integrity  
 - Columnar storage (e.g. ClickHouse-style systems)  

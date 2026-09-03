@@ -2,6 +2,7 @@
 date: 2026-05-21
 item_number: 6
 title: Multi-Agent Failure Cartographer
+summary: "As organisations move toward multi-agent architectures:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -19,7 +20,7 @@ As organisations move toward multi-agent architectures:
 - ownership becomes unclear,
 - root causes become opaque.
 
-Governance and observability are repeatedly highlighted as missing pieces in agent ecosystems. citeturn0search15turn0search19
+Governance and observability are repeatedly highlighted as missing pieces in agent ecosystems. 
 
 ## Approaches
 

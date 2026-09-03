@@ -22,7 +22,7 @@ Systems adapt (scale, retry, tune), but lack explicit boundaries defining *safe 
 **Tech hints**
 - Control theory (PID-like dampening)  
 - SLO integration  
-- Observability via entity["software","OpenTelemetry","observability framework"]  
+- Observability via OpenTelemetry  
 - Time-series anomaly detection  
 
 **Formats**

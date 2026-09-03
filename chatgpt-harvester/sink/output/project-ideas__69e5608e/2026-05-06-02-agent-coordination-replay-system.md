@@ -1,14 +1,15 @@
 ---
 date: 2026-05-06
 item_number: 2
-title: “Agent Coordination Replay System”
+title: Agent Coordination Replay System
+summary: "Teams increasingly need: - step replay, - state replay, - tool-call reconstruction, - intervention simulation."
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Agent Coordination Replay System”
+# 2. Agent Coordination Replay System
 
 
 **Problem**  
@@ -18,7 +19,7 @@ Teams increasingly need:
 - step replay,
 - state replay,
 - tool-call reconstruction,
-- intervention simulation. citeturn0search2turn0search5turn0search6
+- intervention simulation. 
 
 ### Approaches
 - Record inter-agent communication

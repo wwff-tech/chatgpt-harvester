@@ -22,7 +22,7 @@ Decisions are made, but rarely evaluated against outcomes in a structured way.
 **Tech hints**
 - Event correlation (decision → outcome)  
 - Time-series evaluation  
-- Integration with observability via entity["software","OpenTelemetry","observability framework"]  
+- Integration with observability via OpenTelemetry  
 - Simple scoring models (success/failure, deviation from expectation)  
 
 **Formats**

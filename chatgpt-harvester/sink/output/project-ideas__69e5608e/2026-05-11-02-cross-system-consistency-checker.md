@@ -1,14 +1,14 @@
 ---
 date: 2026-05-11
 item_number: 2
-title: “Cross-System Consistency Checker”
+title: Cross-System Consistency Checker
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Cross-System Consistency Checker”
+# 2. Cross-System Consistency Checker
 
 
 **Problem**  
@@ -25,7 +25,7 @@ Different systems maintain their own “truth”, leading to inconsistencies:
 **Tech hints**
 - Snapshot comparison  
 - Hash/state fingerprinting  
-- Integration with infra tools (e.g., entity["software","Terraform","infrastructure as code tool"])  
+- Integration with infra tools (e.g., Terraform)  
 - Graph diffing  
 
 **Formats**

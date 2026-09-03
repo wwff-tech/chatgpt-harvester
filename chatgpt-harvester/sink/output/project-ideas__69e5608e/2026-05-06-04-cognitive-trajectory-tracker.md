@@ -1,14 +1,15 @@
 ---
 date: 2026-05-06
 item_number: 4
-title: “Cognitive Trajectory Tracker”
+title: Cognitive Trajectory Tracker
+summary: This is particularly relevant for ADHD/ASD profiles.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Cognitive Trajectory Tracker”
+# 4. Cognitive Trajectory Tracker
 
 
 **Problem**  

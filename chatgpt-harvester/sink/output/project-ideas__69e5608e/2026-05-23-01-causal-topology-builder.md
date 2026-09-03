@@ -2,6 +2,7 @@
 date: 2026-05-23
 item_number: 1
 title: Causal Topology Builder
+summary: AI agents repeatedly spend tokens reconstructing topology from raw telemetry.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -26,7 +27,7 @@ But they rarely understand:
 - dependency meaning,
 - operational relationships.
 
-AI agents repeatedly spend tokens reconstructing topology from raw telemetry. citeturn0academia45
+AI agents repeatedly spend tokens reconstructing topology from raw telemetry. 
 
 ## Approaches
 
@@ -98,8 +99,8 @@ High
 
 ## References
 
-- entity["software","OpenTelemetry","observability framework"]
-- SREGym benchmark citeturn0academia42
-- Causely paper citeturn0academia45
+- OpenTelemetry
+- SREGym benchmark 
+- Causely paper 
 
 ---

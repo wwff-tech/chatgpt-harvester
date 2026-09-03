@@ -1,14 +1,14 @@
 ---
 date: 2026-05-01
 item_number: 5
-title: “Third-Party Risk Surface Scanner”
+title: Third-Party Risk Surface Scanner
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 5. “Third-Party Risk Surface Scanner”
+## 5. Third-Party Risk Surface Scanner
 
 
 **Problem**  

@@ -2,6 +2,7 @@
 date: 2026-05-21
 item_number: 1
 title: Intent Drift Detector
+summary: Months later the resulting system often behaves differently.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -110,6 +111,6 @@ High
 - https://opentelemetry.io/
 - https://martinfowler.com/articles/architecture-decision-records.html
 
-Supported by current trends around governance and intent-centric engineering. citeturn0academia58turn0search15
+Supported by current trends around governance and intent-centric engineering. 
 
 ---

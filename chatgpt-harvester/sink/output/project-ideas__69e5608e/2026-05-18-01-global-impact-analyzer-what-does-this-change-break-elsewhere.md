@@ -21,7 +21,7 @@ Changes are evaluated locally (service, function, component), not system-wide.
 
 **Tech hints**
 - Service graph modelling  
-- Integration with entity["software","OpenTelemetry","observability framework"] traces  
+- Integration with OpenTelemetry traces  
 - Graph propagation algorithms  
 - “what-if” simulation engine  
 

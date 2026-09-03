@@ -2,6 +2,7 @@
 date: 2026-05-23
 item_number: 3
 title: Harness Observatory
+summary: Tool routing, execution environments, memory layers, permissions, workflow orchestration,
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
@@ -23,7 +24,7 @@ memory layers,
 permissions,
 workflow orchestration,
 
-all affect outcomes dramatically. citeturn0academia43
+all affect outcomes dramatically. 
 
 Yet almost nobody monitors harness quality.
 
@@ -92,7 +93,7 @@ High
 
 ## References
 
-- Agentic Harness Engineering citeturn0academia43
-- Agent observability trends citeturn0search13turn0search9
+- Agentic Harness Engineering 
+- Agent observability trends 
 
 ---

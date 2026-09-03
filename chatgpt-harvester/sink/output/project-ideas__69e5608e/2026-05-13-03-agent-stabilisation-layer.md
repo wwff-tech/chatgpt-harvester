@@ -1,14 +1,14 @@
 ---
 date: 2026-05-13
 item_number: 3
-title: “Agent Stabilisation Layer”
+title: Agent Stabilisation Layer
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Agent Stabilisation Layer”
+# 3. Agent Stabilisation Layer
 
 
 **Problem**  
@@ -26,7 +26,7 @@ Agents over-adapt:
 - State tracking across agent runs  
 - Heuristic scoring of progress vs churn  
 - Integration with agent frameworks  
-- Policy control via entity["software","Open Policy Agent","policy engine"]  
+- Policy control via Open Policy Agent  
 
 **Formats**
 - Middleware SDK  

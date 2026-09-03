@@ -1,14 +1,14 @@
 ---
 date: 2026-05-16
 item_number: 5
-title: “Decision Drift Detector”
+title: Decision Drift Detector
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 5. “Decision Drift Detector”
+# 5. Decision Drift Detector
 
 
 **Problem**  
@@ -22,7 +22,7 @@ Decisions that were once optimal become suboptimal due to changing conditions.
 **Tech hints**
 - Time-series analysis  
 - Baseline comparison  
-- Integration with entity["software","Prometheus","monitoring toolkit"]  
+- Integration with Prometheus  
 - Statistical drift detection  
 
 **Formats**

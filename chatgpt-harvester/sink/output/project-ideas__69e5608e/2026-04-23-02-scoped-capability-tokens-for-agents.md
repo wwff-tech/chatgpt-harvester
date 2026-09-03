@@ -1,14 +1,14 @@
 ---
 date: 2026-04-23
 item_number: 2
-title: “Scoped Capability Tokens for Agents”
+title: Scoped Capability Tokens for Agents
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 2. “Scoped Capability Tokens for Agents”
+## 2. Scoped Capability Tokens for Agents
 
 
 **Problem**  

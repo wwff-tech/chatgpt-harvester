@@ -2,6 +2,7 @@
 date: 2026-04-19
 item_number: 6
 title: Screenshot/API Worker Isolation Router
+summary: (Directly useful for your current product)
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

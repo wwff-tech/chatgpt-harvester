@@ -1,14 +1,14 @@
 ---
 date: 2026-05-18
 item_number: 2
-title: “Cross-Service Optimisation Engine”
+title: Cross-Service Optimisation Engine
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Cross-Service Optimisation Engine”
+# 2. Cross-Service Optimisation Engine
 
 
 **Problem**  
@@ -25,7 +25,7 @@ Optimisation is performed per service, not across the system:
 **Tech hints**
 - Constraint solvers  
 - Multi-objective optimisation algorithms  
-- Metrics ingestion via entity["software","Prometheus","monitoring toolkit"]  
+- Metrics ingestion via Prometheus  
 - Reinforcement learning (optional advanced path)  
 
 **Formats**

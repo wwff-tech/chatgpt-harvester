@@ -22,7 +22,7 @@ Systems output results without expressing confidence, or confidence is local and
 **Tech hints**
 - Probabilistic scoring models  
 - Bayesian updating across stages  
-- Extend entity["software","OpenTelemetry","observability framework"] with confidence metadata  
+- Extend OpenTelemetry with confidence metadata  
 - Schema for confidence propagation  
 
 **Formats**

@@ -1,14 +1,14 @@
 ---
 date: 2026-05-09
 item_number: 4
-title: “Agent Self-Evaluation Harness”
+title: Agent Self-Evaluation Harness
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Agent Self-Evaluation Harness”
+# 4. Agent Self-Evaluation Harness
 
 
 **Problem**  

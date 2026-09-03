@@ -20,7 +20,7 @@ Modern systems log events, but not decisions. Critical choices (retry vs fail, e
 - Build replayable decision timelines  
 
 **Tech hints**
-- Extend entity["software","OpenTelemetry","observability framework"] with decision spans  
+- Extend OpenTelemetry with decision spans  
 - Structured logging (JSON with decision schema)  
 - Context propagation across services  
 - Storage in columnar DB (ClickHouse-style)  

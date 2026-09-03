@@ -1,14 +1,15 @@
 ---
 date: 2026-05-19
 item_number: 1
-title: “Recoverability Scoring Engine”
+title: Recoverability Scoring Engine
+summary: "…but not: - rollback difficulty, - recovery complexity, - reversibility."
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 1. “Recoverability Scoring Engine”
+# 1. Recoverability Scoring Engine
 
 
 **Problem**  
@@ -34,7 +35,7 @@ Teams unknowingly optimise into fragile states.
 
 **Tech hints**
 - Dependency graph analysis  
-- Integration with entity["software","OpenTelemetry","observability framework"] traces  
+- Integration with OpenTelemetry traces  
 - Kubernetes resource mapping  
 - Incident/postmortem ingestion  
 - Change-event correlation  
