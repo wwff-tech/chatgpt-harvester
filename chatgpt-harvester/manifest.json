@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
   "name": "ChatGPT Conversation Harvester",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Daily POST of one or more ChatGPT conversations to a configurable sink.",
-  "permissions": ["storage", "alarms"],
+  "permissions": ["storage", "alarms", "notifications"],
   "host_permissions": ["https://chatgpt.com/*"],
   "background": { "service_worker": "src/background.js" },
   "options_page": "src/options.html",

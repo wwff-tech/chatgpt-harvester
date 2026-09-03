@@ -3,6 +3,8 @@ const DEFAULTS = {
   sink_auth_header: "",
   schedule_local_time: "05:00",
   conversations: [],
+  stale_after_hours: 48,
+  notify_on_stale: true,
 };
 
 let conversations = [];
@@ -60,6 +62,10 @@ function validate() {
   if (!$("schedule_local_time").value) {
     return "Schedule time is required.";
   }
+  const hours = Number($("stale_after_hours").value);
+  if (!Number.isInteger(hours) || hours < 1) {
+    return "Staleness threshold must be a whole number of hours, at least 1.";
+  }
   for (let i = 0; i < conversations.length; i++) {
     if (!conversations[i].id.trim()) {
       return `Conversation #${i + 1} is missing an ID.`;
@@ -78,6 +84,8 @@ function save() {
     sink_url: $("sink_url").value.trim(),
     sink_auth_header: $("sink_auth_header").value.trim(),
     schedule_local_time: $("schedule_local_time").value,
+    stale_after_hours: Number($("stale_after_hours").value),
+    notify_on_stale: $("notify_on_stale").checked,
     conversations: conversations.map((c) => ({
       id: c.id.trim(),
       label: c.label.trim(),
@@ -91,6 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
     $("sink_url").value = cfg.sink_url;
     $("sink_auth_header").value = cfg.sink_auth_header;
     $("schedule_local_time").value = cfg.schedule_local_time;
+    $("stale_after_hours").value = cfg.stale_after_hours;
+    $("notify_on_stale").checked = cfg.notify_on_stale;
     conversations = cfg.conversations.map((c) => ({ ...c }));
     renderConversations();
   });

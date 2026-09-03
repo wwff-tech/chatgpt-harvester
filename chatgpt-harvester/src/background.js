@@ -28,6 +28,70 @@ async function appendToRingBuffer(entry) {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Staleness                                                         */
+/* ------------------------------------------------------------------ */
+
+const HOUR_MS = 3600000;
+// While a feed stays stale, re-notify at most this often. A dead feed is
+// worth a nudge, not a daily reminder.
+const RENOTIFY_AFTER_MS = 7 * 24 * HOUR_MS;
+
+/**
+ * Timestamp (epoch ms) of the newest message in a conversation, or null.
+ *
+ * Deliberately not payload.update_time: that also moves when ChatGPT touches
+ * conversation metadata server-side — a scheduled-task record being paused,
+ * for instance — which would reset the clock on a feed that has produced no
+ * actual content for months. The newest message create_time is the only
+ * signal that tracks content.
+ */
+function latestMessageTime(payload) {
+  const mapping = (payload && payload.mapping) || {};
+  let latest = null;
+  for (const node of Object.values(mapping)) {
+    const t = node && node.message && node.message.create_time;
+    if (typeof t === "number" && (latest === null || t > latest)) {
+      latest = t;
+    }
+  }
+  if (latest !== null) return latest * 1000;
+  const updateTime = payload && payload.update_time;
+  return typeof updateTime === "number" ? updateTime * 1000 : null;
+}
+
+function daysSince(ms) {
+  return Math.floor((Date.now() - ms) / (24 * HOUR_MS));
+}
+
+async function notify(id, title, message, conversationId) {
+  try {
+    await chrome.notifications.create(id, {
+      type: "basic",
+      iconUrl: chrome.runtime.getURL("icons/128.png"),
+      title,
+      message,
+      priority: 1,
+    });
+    if (conversationId) {
+      const data = await chrome.storage.local.get({ notification_targets: {} });
+      data.notification_targets[id] = conversationId;
+      await chrome.storage.local.set({ notification_targets: data.notification_targets });
+    }
+  } catch (err) {
+    log("warn", "Notification failed:", err.message);
+  }
+}
+
+chrome.notifications.onClicked.addListener(async (id) => {
+  const { notification_targets = {} } = await chrome.storage.local.get("notification_targets");
+  const conversationId = notification_targets[id];
+  if (conversationId) {
+    chrome.tabs.create({ url: `https://chatgpt.com/c/${conversationId}` });
+  }
+  chrome.notifications.clear(id);
+});
+
+/* ------------------------------------------------------------------ */
 /*  Auth                                                              */
 /* ------------------------------------------------------------------ */
 
@@ -171,9 +235,17 @@ async function runHarvest() {
       sink_auth_header: "",
       schedule_local_time: "",
       conversations: [],
+      stale_after_hours: 48,
+      notify_on_stale: true,
     });
 
-    const { sink_url, sink_auth_header, conversations } = config;
+    const {
+      sink_url,
+      sink_auth_header,
+      conversations,
+      stale_after_hours,
+      notify_on_stale,
+    } = config;
 
     if (!sink_url) {
       log("error", "No sink_url configured");
@@ -252,33 +324,109 @@ async function runHarvest() {
       results.push(logEntry);
     }
 
-    // Compute overall status
+    // Staleness — a fetch can succeed every morning while the conversation
+    // behind it has produced nothing for months.
+    const { feed_state = {} } = await chrome.storage.local.get("feed_state");
+    const thresholdMs = Math.max(1, Number(stale_after_hours) || 48) * HOUR_MS;
+    const newlyStale = [];
+    const recovered = [];
+
+    for (const r of results) {
+      if (typeof r.latest_message_time !== "number") continue;
+      const prev = feed_state[r.conversation_id] || {};
+      const isStale = Date.now() - r.latest_message_time > thresholdMs;
+      const entry = {
+        label: r.label,
+        latest_message_time: r.latest_message_time,
+        stale: isStale,
+        checked_at: runTimestamp,
+        notified_at: prev.notified_at || null,
+      };
+
+      if (isStale) {
+        const dueAgain =
+          !prev.notified_at ||
+          Date.now() - new Date(prev.notified_at).getTime() > RENOTIFY_AFTER_MS;
+        if (dueAgain) {
+          newlyStale.push(r);
+          entry.notified_at = runTimestamp;
+        }
+      } else if (prev.stale) {
+        recovered.push(r);
+        entry.notified_at = null;
+      }
+
+      feed_state[r.conversation_id] = entry;
+    }
+
+    // Drop state for conversations no longer configured, so removing a dead
+    // feed actually clears the badge rather than leaving it stuck amber.
+    const configured = new Set(conversations.map((c) => c.id));
+    for (const id of Object.keys(feed_state)) {
+      if (!configured.has(id)) delete feed_state[id];
+    }
+    await chrome.storage.local.set({ feed_state });
+
+    const staleCount = Object.values(feed_state).filter((f) => f.stale).length;
+
+    if (notify_on_stale && newlyStale.length) {
+      const lines = newlyStale.map(
+        (r) =>
+          `\u2022 ${r.label || r.conversation_id} \u2014 nothing new for ${daysSince(r.latest_message_time)} days`
+      );
+      await notify(
+        `stale:${runTimestamp}`,
+        newlyStale.length === 1 ? "A feed has gone quiet" : `${newlyStale.length} feeds have gone quiet`,
+        `${lines.join("\n")}\n\nHarvesting is working. ChatGPT auto-pauses tasks whose updates go unviewed, and sometimes moves a task to a new conversation \u2014 check automations settings.`,
+        newlyStale[0].conversation_id
+      );
+    }
+
+    if (notify_on_stale && recovered.length) {
+      await notify(
+        `recovered:${runTimestamp}`,
+        recovered.length === 1 ? "A feed is producing again" : "Feeds are producing again",
+        recovered.map((r) => `\u2022 ${r.label || r.conversation_id}`).join("\n"),
+        recovered[0].conversation_id
+      );
+    }
+
+    // Compute overall status. Errors outrank staleness: a feed that failed to
+    // fetch tells us nothing about whether it is still producing.
     const allOk = results.every((r) => r.status === "ok");
     const anyAuthError = results.some((r) => r.status === "auth_error");
     let overall_status;
 
-    if (allOk) {
-      overall_status = "ok";
-      setBadge("", "#43a047");
-    } else if (anyAuthError && results.every((r) => r.status === "auth_error")) {
+    if (anyAuthError && results.every((r) => r.status === "auth_error")) {
       overall_status = "auth_failure";
       setBadge("\u00d7", "#e53935");
-    } else {
+    } else if (!allOk) {
       overall_status = "partial";
       setBadge("!", "#fb8c00");
+    } else if (staleCount) {
+      overall_status = "stale";
+      setBadge(String(staleCount), "#f59e0b");
+    } else {
+      overall_status = "ok";
+      setBadge("", "#43a047");
     }
 
     const lastRun = {
       timestamp: runTimestamp,
       overall_status,
+      stale_count: staleCount,
     };
     await chrome.storage.local.set({ last_run: lastRun });
 
     const okCount = results.filter((r) => r.status === "ok").length;
-    const summary = `${okCount}/${results.length} conversations harvested (${overall_status})`;
+    let summary = `${okCount}/${results.length} conversations harvested (${overall_status})`;
+    if (staleCount) {
+      summary += `, ${staleCount} stale`;
+    }
     log("info", "Harvest complete:", summary);
 
-    return { success: overall_status === "ok", summary };
+    // Staleness is a warning about the source, not a harvest failure.
+    return { success: overall_status === "ok" || overall_status === "stale", summary };
   } finally {
     isRunning = false;
   }
@@ -292,15 +440,18 @@ async function processConversation(conv, accessToken, sinkUrl, sinkAuthHeader) {
     return FETCH_401;
   }
 
+  const latest = latestMessageTime(payload);
+
   // POST to sink
   try {
     const sinkResult = await postToSink(sinkUrl, sinkAuthHeader, conv.id, conv.label, payload);
-    return { status: "ok", http_status: sinkResult.status };
+    return { status: "ok", http_status: sinkResult.status, latest_message_time: latest };
   } catch (err) {
     return {
       status: "sink_error",
       http_status: err.httpStatus,
       error: err.message,
+      latest_message_time: latest,
     };
   }
 }
@@ -393,16 +544,17 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
   if (message.action === "get_status") {
     Promise.all([
-      chrome.storage.local.get({ last_run: null }),
+      chrome.storage.local.get({ last_run: null, feed_state: {} }),
       chrome.alarms.get("daily-harvest"),
     ]).then(([data, alarm]) => {
       sendResponse({
         last_run: data.last_run,
+        feed_state: data.feed_state,
         next_alarm: alarm ? alarm.scheduledTime : null,
       });
     }).catch((err) => {
       log("error", "get_status error:", err.message);
-      sendResponse({ last_run: null, next_alarm: null });
+      sendResponse({ last_run: null, feed_state: {}, next_alarm: null });
     });
     return true; // async response
   }

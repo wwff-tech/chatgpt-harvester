@@ -25,7 +25,8 @@
     }
     input[type="text"],
     input[type="password"],
-    input[type="time"] {
+    input[type="time"],
+    input[type="number"] {
       width: 100%;
       padding: 0.4rem 0.5rem;
       border: 1px solid #ccc;
@@ -82,6 +83,20 @@
       transition: opacity 0.3s;
     }
     #status.visible { opacity: 1; }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 400;
+      margin-top: 0.6rem;
+    }
+    .checkbox-row input { width: auto; }
+    .hint {
+      color: #666;
+      font-size: 0.8rem;
+      font-weight: 400;
+      margin-top: 0.25rem;
+    }
   </style>
 </head>
 <body>
@@ -98,6 +113,18 @@
 
   <label for="schedule_local_time">Schedule Time</label>
   <input type="time" id="schedule_local_time">
+
+  <label for="stale_after_hours">Staleness threshold (hours)</label>
+  <input type="number" id="stale_after_hours" min="1" step="1" placeholder="48">
+  <div class="hint">
+    Warn when a conversation has produced no new messages for this long. The
+    fetch can succeed every day while the ChatGPT task behind it is paused.
+  </div>
+
+  <label class="checkbox-row">
+    <input type="checkbox" id="notify_on_stale">
+    <span>Desktop notification when a feed goes quiet</span>
+  </label>
 
   <label>Conversations</label>
   <div id="conv-list"></div>
