@@ -178,6 +178,26 @@ def run_codex(prompt: str, model: str, model_effort: str) -> tuple[dict, str, fl
         sys.exit(f"codex returned non-JSON despite --output-schema: {exc}\n{raw[:800]}")
 
 
+def ungrounded_sources(response: dict, items: list[dict]) -> list[tuple[str, str]]:
+    """Cited URLs that were never in the candidate set, with the idea citing them.
+
+    The schema constrains shape, not truth: sources[].url only has to be a
+    string, so a model that invents a plausible URL emits output that
+    validates cleanly. Luna did exactly that during the model eval -- it
+    reconstructed an Ars Technica URL rather than copying the canonical_url
+    it was handed, for an article that WAS in the candidate set. A dead link
+    that reads as correct survives review, and traceability is the whole
+    reason for carrying sources at all.
+    """
+    offered = {item["canonical_url"] for item in items}
+    return [
+        (idea.get("title", "?"), source["url"])
+        for idea in response.get("items", [])
+        for source in idea.get("sources", [])
+        if source["url"] not in offered
+    ]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default=os.environ.get("SRETAB_BASE_URL"),
@@ -247,6 +267,14 @@ def main() -> int:
             print(f"  schema: {'/'.join(map(str, problem.path))}: {problem.message}",
                   file=sys.stderr)
         sys.exit(f"Response failed validation ({len(problems)} errors)")
+
+    fabricated = ungrounded_sources(response, items)
+    if fabricated:
+        print(f"{len(fabricated)} cited source(s) were never in the candidate set:",
+              file=sys.stderr)
+        for title, url in fabricated[:10]:
+            print(f"  {url}\n    cited by: {title[:70]}", file=sys.stderr)
+        sys.exit("Refusing to emit a run with fabricated citations.")
 
     print(f"{len(response['items'])} ideas generated", file=sys.stderr)
     json.dump(response, sys.stdout, indent=2, ensure_ascii=False)

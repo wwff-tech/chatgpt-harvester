@@ -160,16 +160,25 @@ def group_by_date(messages: list[Message]) -> dict[str, list[Message]]:
 # The feeds have used three item layouts over time. Patterns are tried in
 # order and the first that matches anything wins, so a feed still using the
 # original layout parses exactly as it always did.
+#: Layouts whose items open with prose that genuinely stands in for a
+#: Summary field. The original layout carries an explicit Summary, and the
+#: project feed -- which matches the same pattern -- opens with section
+#: headings and asides, where the first prose block is as likely to be a
+#: trailing list fragment as a summary. Treating that as a summary writes
+#: something wrong into a field that reads as authoritative, which is worse
+#: than leaving it empty.
+_PROSE_LEADS_LAYOUT = "prose-lead"
+
 _ITEM_PATTERNS = (
     # Original, and the July 2026 variant that kept its headings:
     #   "## 1) Heading"   "# 1. Heading"
-    re.compile(r"^(?P<prefix>#{1,2}) (?P<num>\d+)(?P<sep>[).]) (?P<heading>.+)$", re.MULTILINE),
+    ("bulleted", re.compile(r"^(?P<prefix>#{1,2}) (?P<num>\d+)(?P<sep>[).]) (?P<heading>.+)$", re.MULTILINE)),
     # August 2026 onward:
     #   '### 1. **"Heading"** - Long-form'
-    re.compile(r"^(?P<prefix>#{3,4}) (?P<num>\d+)(?P<sep>[).]) (?P<heading>.+)$", re.MULTILINE),
+    (_PROSE_LEADS_LAYOUT, re.compile(r"^(?P<prefix>#{3,4}) (?P<num>\d+)(?P<sep>[).]) (?P<heading>.+)$", re.MULTILINE)),
     # Briefly, in early August 2026, with no heading markup at all:
     #   '**1. "Heading" - Long-form**'
-    re.compile(r"^(?P<prefix>)\*\*(?P<num>\d+)(?P<sep>[).]) (?P<heading>.+?)\*\*[ \t]*$", re.MULTILINE),
+    (_PROSE_LEADS_LAYOUT, re.compile(r"^(?P<prefix>)\*\*(?P<num>\d+)(?P<sep>[).]) (?P<heading>.+?)\*\*[ \t]*$", re.MULTILINE)),
 )
 
 # A trailing "- Long-form" / "- Short post" on a heading is the format field
@@ -188,9 +197,11 @@ def parse_items(text: str) -> list[ParsedItem]:
     text = clean_text(text)
 
     matches: list[re.Match] = []
-    for pattern in _ITEM_PATTERNS:
+    layout = ""
+    for name, pattern in _ITEM_PATTERNS:
         matches = list(pattern.finditer(text))
         if matches:
+            layout = name
             break
     if not matches:
         return []
@@ -208,7 +219,8 @@ def parse_items(text: str) -> list[ParsedItem]:
             number=int(match.group("num")),
             heading=heading,
             title=_extract_field(body, "Title", "Suggested title"),
-            summary=_extract_field(body, "Summary") or _first_paragraph(body),
+            summary=_extract_field(body, "Summary")
+            or (_first_paragraph(body) if layout == _PROSE_LEADS_LAYOUT else None),
             angle=_extract_field(body, "Angle"),
             interests=_extract_list_field(
                 body, "Matches Interests", "Matches your interests", "Matches"
@@ -311,8 +323,11 @@ def _extract_list_field(body: str, *names: str) -> list[str]:
 def _first_paragraph(body: str) -> str | None:
     """Opening prose paragraph of an item body.
 
-    The August 2026 layout dropped the Summary field; its opening paragraph
-    plays the same role, so fall back to that rather than leaving it unset.
+    Only for layouts in _PROSE_LEADS_LAYOUT. The August 2026 article layout
+    dropped the Summary field and its opening paragraph plays the same role;
+    in layouts that never had one, the first prose block is as likely to be
+    an aside or the tail of a list, and a plausible-looking wrong summary is
+    worse than an empty field.
     """
     for block in body.split("\n\n"):
         block = block.strip()

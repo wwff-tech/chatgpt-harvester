@@ -77,8 +77,10 @@ async function notify(id, title, message, conversationId) {
       data.notification_targets[id] = conversationId;
       await chrome.storage.local.set({ notification_targets: data.notification_targets });
     }
+    return true;
   } catch (err) {
     log("warn", "Notification failed:", err.message);
+    return false;
   }
 }
 
@@ -349,7 +351,12 @@ async function runHarvest() {
           Date.now() - new Date(prev.notified_at).getTime() > RENOTIFY_AFTER_MS;
         if (dueAgain) {
           newlyStale.push(r);
-          entry.notified_at = runTimestamp;
+          // notified_at is stamped only once a notification has actually
+          // gone out, further down. Stamping it here recorded a
+          // notification that was never sent whenever notifications were
+          // switched off or the create() call failed -- and because the
+          // stamp starts the seven-day re-notify window, turning them on
+          // afterwards bought silence rather than the first alert.
         }
       } else if (prev.stale) {
         recovered.push(r);
@@ -365,7 +372,6 @@ async function runHarvest() {
     for (const id of Object.keys(feed_state)) {
       if (!configured.has(id)) delete feed_state[id];
     }
-    await chrome.storage.local.set({ feed_state });
 
     const staleCount = Object.values(feed_state).filter((f) => f.stale).length;
 
@@ -374,12 +380,21 @@ async function runHarvest() {
         (r) =>
           `\u2022 ${r.label || r.conversation_id} \u2014 nothing new for ${daysSince(r.latest_message_time)} days`
       );
-      await notify(
+      const delivered = await notify(
         `stale:${runTimestamp}`,
         newlyStale.length === 1 ? "A feed has gone quiet" : `${newlyStale.length} feeds have gone quiet`,
         `${lines.join("\n")}\n\nHarvesting is working. ChatGPT auto-pauses tasks whose updates go unviewed, and sometimes moves a task to a new conversation \u2014 check automations settings.`,
         newlyStale[0].conversation_id
       );
+      // Only a delivered notification starts the re-notify window. One that
+      // failed should be retried on the next run, not treated as sent.
+      if (delivered) {
+        for (const r of newlyStale) {
+          if (feed_state[r.conversation_id]) {
+            feed_state[r.conversation_id].notified_at = runTimestamp;
+          }
+        }
+      }
     }
 
     if (notify_on_stale && recovered.length) {
@@ -390,6 +405,8 @@ async function runHarvest() {
         recovered[0].conversation_id
       );
     }
+
+    await chrome.storage.local.set({ feed_state });
 
     // Compute overall status. Errors outrank staleness: a feed that failed to
     // fetch tells us nothing about whether it is still producing.
