@@ -191,8 +191,11 @@ def main() -> int:
     # The heavier reasoning model takes ~10 minutes on a couple of dozen
     # candidates, which is no use to a job that runs every morning. Selecting
     # and framing is not the kind of work that repays deep reasoning.
-    parser.add_argument("--model", default="gpt-5.6-luna",
-                        help="Codex model (default gpt-5.6-luna)")
+    # terra, per eval.py against the noisy fixture: luna cannot separate an
+    # LWN article from a Dev.to post once the feed is unfiltered, and sol is
+    # 2.3x the credit for a stability gain rather than a precision one.
+    parser.add_argument("--model", default="gpt-5.6-terra",
+                        help="Codex model (default gpt-5.6-terra)")
     parser.add_argument("--effort", default="low", choices=["low", "medium", "high"],
                         help="Codex reasoning effort (default low)")
     parser.add_argument("--candidates-only", action="store_true",
