@@ -7,3 +7,6 @@ sretab-api-key
 idea-pipeline/eval-noisy.json
 idea-pipeline/eval-tokens*.json
 idea-pipeline/eval-results.json
+
+# Claude Code session state and worktrees (22MB of local scratch)
+.claude/
