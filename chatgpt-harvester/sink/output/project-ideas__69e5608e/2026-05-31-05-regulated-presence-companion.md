@@ -2,7 +2,6 @@
 date: 2026-05-31
 item_number: 5
 title: Regulated Presence Companion
-summary: "Recent ADHD discussions repeatedly converge on:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

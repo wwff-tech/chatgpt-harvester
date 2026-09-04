@@ -2,7 +2,6 @@
 date: 2026-05-30
 item_number: 3
 title: Machine-Native Postmortems
-summary: Current postmortems are written for humans.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

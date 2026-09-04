@@ -2,7 +2,6 @@
 date: 2026-05-27
 item_number: 3
 title: Observability Debt Scanner
-summary: Recent empirical research found AI coding agents frequently underperform regarding logging and observability requirements. Humans later repair many of these omissions.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

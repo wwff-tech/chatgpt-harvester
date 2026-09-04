@@ -2,7 +2,6 @@
 date: 2026-05-06
 item_number: 3
 title: Operational Drift Radar
-summary: Most drift detection today focuses only on config state.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

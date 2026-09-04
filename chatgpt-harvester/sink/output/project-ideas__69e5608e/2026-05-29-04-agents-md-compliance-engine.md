@@ -2,7 +2,6 @@
 date: 2026-05-29
 item_number: 4
 title: AGENTS.md Compliance Engine
-summary: AGENTS.md has become a de facto interoperability standard for coding agents.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

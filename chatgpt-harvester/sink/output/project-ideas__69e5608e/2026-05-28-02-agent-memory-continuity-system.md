@@ -2,7 +2,6 @@
 date: 2026-05-28
 item_number: 2
 title: Agent Memory Continuity System
-summary: "Long-running coding and operational agents increasingly lose context continuity across:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

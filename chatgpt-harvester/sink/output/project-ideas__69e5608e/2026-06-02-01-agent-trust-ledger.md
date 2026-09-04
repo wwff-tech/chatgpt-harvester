@@ -2,7 +2,6 @@
 date: 2026-06-02
 item_number: 1
 title: Agent Trust Ledger
-summary: Enterprises increasingly deploy dozens or hundreds of agents.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

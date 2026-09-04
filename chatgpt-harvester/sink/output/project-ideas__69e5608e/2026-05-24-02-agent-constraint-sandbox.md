@@ -2,7 +2,6 @@
 date: 2026-05-24
 item_number: 2
 title: Agent Constraint Sandbox
-summary: "Real-world failures often arise from constraint violations:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

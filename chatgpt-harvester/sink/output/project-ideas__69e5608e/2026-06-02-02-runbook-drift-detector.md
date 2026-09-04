@@ -2,7 +2,6 @@
 date: 2026-06-02
 item_number: 2
 title: Runbook Drift Detector
-summary: AI agents amplify the problem because they consume outdated instructions literally.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

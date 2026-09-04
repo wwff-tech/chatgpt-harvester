@@ -2,7 +2,6 @@
 date: 2026-05-23
 item_number: 2
 title: Agent Identity Registry
-summary: Yet many organisations still treat them as anonymous automation. Recent enterprise security discussions increasingly focus on AI agents as identity-bearing actors.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

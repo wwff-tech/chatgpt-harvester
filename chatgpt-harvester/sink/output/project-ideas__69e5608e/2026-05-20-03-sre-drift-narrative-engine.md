@@ -2,7 +2,6 @@
 date: 2026-05-20
 item_number: 3
 title: SRE Drift Narrative Engine
-summary: "Very few explain: > “How did we end up here?”"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

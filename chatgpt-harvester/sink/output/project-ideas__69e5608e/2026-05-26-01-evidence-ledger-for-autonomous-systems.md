@@ -2,7 +2,6 @@
 date: 2026-05-26
 item_number: 1
 title: Evidence Ledger for Autonomous Systems
-summary: "Store evidence bundles alongside actions:"
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

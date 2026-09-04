@@ -2,7 +2,6 @@
 date: 2026-05-27
 item_number: 1
 title: Insight Policy Engine
-summary: "Recent research argues that future coding agents should be evaluated by the quality of their \"insight policy\" rather than merely autonomy."
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

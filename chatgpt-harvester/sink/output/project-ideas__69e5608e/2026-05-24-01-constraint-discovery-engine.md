@@ -2,7 +2,6 @@
 date: 2026-05-24
 item_number: 1
 title: Constraint Discovery Engine
-summary: Most metrics systems reveal symptoms, not constraints.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7

@@ -2,7 +2,6 @@
 date: 2026-05-29
 item_number: 5
 title: Executive Function Delegation Assistant
-summary: Body doubling and regulated presence continue to gain attention because they help with executive-function delegation rather than task management.
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
