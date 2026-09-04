@@ -26,6 +26,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 import tempfile
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -136,13 +137,14 @@ def format_candidates(items: list[dict]) -> str:
     return "\n\n".join(lines)
 
 
-def run_codex(prompt: str, model: str, model_effort: str) -> dict:
+def run_codex(prompt: str, model: str, model_effort: str) -> tuple[dict, str, float]:
     """Run one synthesis turn and return the parsed, schema-valid response.
 
     read-only sandbox: this job reads a prompt and returns JSON. It has no
     reason to touch the filesystem, and the prompt contains third-party
     feed text, so the blast radius is worth keeping at zero.
     """
+    started = time.monotonic()
     with tempfile.TemporaryDirectory() as tmp:
         out_path = Path(tmp) / "response.json"
         command = [
@@ -167,8 +169,11 @@ def run_codex(prompt: str, model: str, model_effort: str) -> dict:
             sys.exit(f"codex wrote no output file.\nstdout:\n{result.stdout[-2000:]}")
         raw = out_path.read_text().strip()
 
+    elapsed = time.monotonic() - started
     try:
-        return json.loads(raw)
+        # stderr, not stdout: codex writes its banner and the token count
+        # there, and callers measuring a run need them.
+        return json.loads(raw), result.stdout + result.stderr, elapsed
     except json.JSONDecodeError as exc:
         sys.exit(f"codex returned non-JSON despite --output-schema: {exc}\n{raw[:800]}")
 
@@ -192,14 +197,25 @@ def main() -> int:
                         help="Codex reasoning effort (default low)")
     parser.add_argument("--candidates-only", action="store_true",
                         help="Print the candidate set and stop, without calling codex")
+    parser.add_argument("--save-candidates", metavar="PATH",
+                        help="Write the fetched candidates to a JSON file")
+    parser.add_argument("--candidates-file", metavar="PATH",
+                        help="Read candidates from a JSON file instead of sre-tab, so a run "
+                             "can be replayed against exactly the same input")
     args = parser.parse_args()
 
-    if not args.base_url:
-        sys.exit("No base URL: pass --base-url or set SRETAB_BASE_URL")
-
-    topics = [t.strip() for t in args.topics.split(",")] if args.topics else None
-    items = fetch_candidates(args.base_url, read_token(args), topics, args.hours)
-    print(f"{len(items)} candidates in the last {args.hours}h", file=sys.stderr)
+    if args.candidates_file:
+        items = json.loads(Path(args.candidates_file).read_text())
+        print(f"{len(items)} candidates replayed from {args.candidates_file}", file=sys.stderr)
+    else:
+        if not args.base_url:
+            sys.exit("No base URL: pass --base-url or set SRETAB_BASE_URL")
+        topics = [t.strip() for t in args.topics.split(",")] if args.topics else None
+        items = fetch_candidates(args.base_url, read_token(args), topics, args.hours)
+        print(f"{len(items)} candidates in the last {args.hours}h", file=sys.stderr)
+        if args.save_candidates:
+            Path(args.save_candidates).write_text(json.dumps(items, indent=2))
+            print(f"saved to {args.save_candidates}", file=sys.stderr)
     if not items:
         sys.exit("No candidates in the window; nothing to synthesise.")
 
@@ -214,11 +230,12 @@ def main() -> int:
         print(format_candidates(items))
         return 0
 
-    response = run_codex(
+    response, _stdout, elapsed = run_codex(
         BRIEF.format(count=args.count, candidates=format_candidates(items)),
         args.model,
         args.effort,
     )
+    print(f"codex returned in {elapsed:.0f}s", file=sys.stderr)
 
     schema = json.loads(SCHEMA_PATH.read_text())
     problems = sorted(Draft202012Validator(schema).iter_errors(response), key=str)

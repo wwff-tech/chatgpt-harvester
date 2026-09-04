@@ -4,3 +4,6 @@ pip.conf
 .pypirc
 
 sretab-api-key
+idea-pipeline/eval-noisy.json
+idea-pipeline/eval-tokens*.json
+idea-pipeline/eval-results.json
