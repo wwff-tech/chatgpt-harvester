@@ -1,14 +1,14 @@
 ---
 date: 2026-05-05
 item_number: 3
-title: “Credential Lifecycle Tracker”
+title: Credential Lifecycle Tracker
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 3. “Credential Lifecycle Tracker”
+## 3. Credential Lifecycle Tracker
 
 
 **Problem**  
@@ -20,7 +20,7 @@ Credentials (API keys, tokens, certs) are created, rotated, and revoked without 
 - Enforce lifecycle policies  
 
 **Tech hints**
-- Integration with secret managers (e.g., entity["software","HashiCorp Vault","secrets management"])  
+- Integration with secret managers (e.g., HashiCorp Vault)  
 - Usage logging + anomaly detection  
 - Policy-as-code enforcement  
 

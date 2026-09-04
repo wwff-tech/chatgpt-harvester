@@ -1,14 +1,14 @@
 ---
 date: 2026-05-14
 item_number: 5
-title: “Alert Noise Reduction Engine”
+title: Alert Noise Reduction Engine
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 5. “Alert Noise Reduction Engine”
+# 5. Alert Noise Reduction Engine
 
 
 **Problem**  
@@ -24,7 +24,7 @@ Alerting systems accumulate noise:
 
 **Tech hints**
 - Feedback loop analysis  
-- Integration with entity["software","Prometheus","monitoring toolkit"]  
+- Integration with Prometheus  
 - Statistical signal filtering  
 
 **Formats**

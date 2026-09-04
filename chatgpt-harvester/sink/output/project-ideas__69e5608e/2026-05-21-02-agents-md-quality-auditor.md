@@ -21,7 +21,7 @@ However:
 - conflicting guidance accumulates,
 - agent behaviours diverge.
 
-Research shows AGENTS.md-style configuration is rapidly becoming the dominant configuration mechanism across repositories. citeturn0academia57
+Research shows AGENTS.md-style configuration is rapidly becoming the dominant configuration mechanism across repositories. 
 
 ## Approaches
 

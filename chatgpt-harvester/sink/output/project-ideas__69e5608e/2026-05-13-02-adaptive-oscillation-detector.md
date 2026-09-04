@@ -1,14 +1,14 @@
 ---
 date: 2026-05-13
 item_number: 2
-title: “Adaptive Oscillation Detector”
+title: Adaptive Oscillation Detector
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Adaptive Oscillation Detector”
+# 2. Adaptive Oscillation Detector
 
 
 **Problem**  
@@ -25,7 +25,7 @@ Auto-scaling, retries, and feedback loops create oscillations:
 **Tech hints**
 - Fourier / spectral analysis  
 - Sliding window variance detection  
-- Integration with entity["software","Prometheus","monitoring toolkit"] metrics  
+- Integration with Prometheus metrics  
 - Feedback loop modelling  
 
 **Formats**

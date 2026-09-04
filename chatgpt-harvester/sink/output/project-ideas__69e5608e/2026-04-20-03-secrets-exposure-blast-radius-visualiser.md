@@ -1,14 +1,14 @@
 ---
 date: 2026-04-20
 item_number: 3
-title: “Secrets Exposure Blast Radius Visualiser”
+title: Secrets Exposure Blast Radius Visualiser
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 3. “Secrets Exposure Blast Radius Visualiser”
+## 3. Secrets Exposure Blast Radius Visualiser
 
 
 **Problem**  

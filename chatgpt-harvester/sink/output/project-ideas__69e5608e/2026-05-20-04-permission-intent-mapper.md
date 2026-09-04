@@ -1,14 +1,14 @@
 ---
 date: 2026-05-20
 item_number: 4
-title: “Permission Intent Mapper”
+title: Permission Intent Mapper
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Permission Intent Mapper”
+# 4. Permission Intent Mapper
 
 
 ## Problem
@@ -29,7 +29,7 @@ This leads to:
 
 ## Suggested tech hints
 - IAM graph modelling  
-- Policy-as-code integration using entity["software","Open Policy Agent","policy engine"]  
+- Policy-as-code integration using Open Policy Agent  
 - Expiry metadata  
 - Semantic similarity detection for duplicate permissions  
 

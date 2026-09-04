@@ -1,14 +1,14 @@
 ---
 date: 2026-05-10
 item_number: 3
-title: “Agent Negotiation Protocol”
+title: Agent Negotiation Protocol
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Agent Negotiation Protocol”
+# 3. Agent Negotiation Protocol
 
 
 **Problem**  
@@ -26,7 +26,7 @@ There is little *negotiation* between agents or systems.
 
 **Tech hints**
 - Capability descriptors (JSON schema)  
-- Protocol layer (inspired by entity["software","Model Context Protocol","AI interaction protocol"])  
+- Protocol layer (inspired by Model Context Protocol)  
 - Pre-execution validation handshake  
 
 **Formats**

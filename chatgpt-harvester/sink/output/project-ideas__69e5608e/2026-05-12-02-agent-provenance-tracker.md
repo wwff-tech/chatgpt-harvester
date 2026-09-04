@@ -1,14 +1,14 @@
 ---
 date: 2026-05-12
 item_number: 2
-title: “Agent Provenance Tracker”
+title: Agent Provenance Tracker
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Agent Provenance Tracker”
+# 2. Agent Provenance Tracker
 
 
 **Problem**  
@@ -26,7 +26,7 @@ Agent outputs are hard to trust because:
 - Integration with agent frameworks  
 - Structured trace schemas  
 - Tool-call logging  
-- Compatibility with entity["software","Model Context Protocol","AI interaction protocol"]  
+- Compatibility with Model Context Protocol  
 
 **Formats**
 - Agent middleware  

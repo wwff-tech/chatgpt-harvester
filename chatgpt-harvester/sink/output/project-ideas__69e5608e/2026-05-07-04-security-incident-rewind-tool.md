@@ -1,14 +1,14 @@
 ---
 date: 2026-05-07
 item_number: 4
-title: “Security Incident Rewind Tool”
+title: Security Incident Rewind Tool
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Security Incident Rewind Tool”
+# 4. Security Incident Rewind Tool
 
 
 **Problem**  

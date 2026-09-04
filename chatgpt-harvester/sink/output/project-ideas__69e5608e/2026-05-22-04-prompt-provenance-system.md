@@ -91,7 +91,7 @@ High
 
 ## References
 
-- Intent-centric engineering research citeturn0academia15
-- Agentic engineering discussions citeturn0news12turn0news21
+- Intent-centric engineering research 
+- Agentic engineering discussions 
 
 ---

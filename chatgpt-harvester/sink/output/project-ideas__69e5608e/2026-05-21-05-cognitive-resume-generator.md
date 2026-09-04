@@ -27,7 +27,7 @@ Current tools remember files.
 
 They do not remember thought processes.
 
-Body-doubling, external structure, and cognitive scaffolding remain recurring ADHD productivity themes. citeturn0search4turn0search16turn0search20
+Body-doubling, external structure, and cognitive scaffolding remain recurring ADHD productivity themes. 
 
 ## Approaches
 

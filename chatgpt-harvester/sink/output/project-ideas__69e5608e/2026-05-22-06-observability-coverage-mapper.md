@@ -21,7 +21,7 @@ They rarely know:
 
 - what does not.
 
-As AI-generated code expands codebases, blind spots become harder to identify. citeturn0news17turn0news21
+As AI-generated code expands codebases, blind spots become harder to identify. 
 
 ## Approaches
 
@@ -88,7 +88,7 @@ High
 
 ## References
 
-- entity["software","OpenTelemetry","observability framework"]
-- Agent observability discussions citeturn0news17
+- OpenTelemetry
+- Agent observability discussions 
 
 ---

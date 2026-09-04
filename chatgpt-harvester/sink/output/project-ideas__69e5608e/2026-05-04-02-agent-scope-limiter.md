@@ -1,14 +1,14 @@
 ---
 date: 2026-05-04
 item_number: 2
-title: “Agent Scope Limiter”
+title: Agent Scope Limiter
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 2. “Agent Scope Limiter”
+## 2. Agent Scope Limiter
 
 
 **Problem**  
@@ -22,7 +22,7 @@ Agents tend to exceed intended scope (file access, API usage, side effects), esp
 **Tech hints**
 - Capability-based security model  
 - Sandboxed execution environments  
-- Policy engines (e.g., entity["software","Open Policy Agent","policy engine"])  
+- Policy engines (e.g., Open Policy Agent)  
 
 **Formats**
 - Agent middleware  

@@ -1,0 +1,1176 @@
+[
+  {
+    "model": "gpt-5.6-luna",
+    "repeat": 0,
+    "latency_s": 36.3,
+    "tokens": 23217,
+    "schema_valid": true,
+    "schema_errors": [],
+    "n": 6,
+    "grounding": 1.0,
+    "sourced": 1.0,
+    "conf_spread": 0.22999999999999998,
+    "conf_stdev": 0.08013876853447538,
+    "points_ok": 1.0,
+    "angle_distinct": 1.0,
+    "source_variety": 1.0,
+    "primary": [
+      "https://dev.to/driftsignal/github-quietly-removed-mergecommitsha-from-its-api-your-automation-wont-error-itll-just-be-4a6a",
+      "https://lwn.net/Articles/1092001/",
+      "https://arstechnica.com/ai/2026/09/nvidia-buys-hugging-face-the-github-of-ai-for-13-billion/",
+      "https://dev.to/dataio_4921/when-runtime-plans-enter-the-prompt-a-structured-debate-for-sql-review-bots-2i3e",
+      "https://dev.to/debashish_ghosal/my-self-improving-agent-still-couldnt-improve-that-was-the-breakthrough-mni",
+      "https://dev.to/serguey_shinder_4ab9b87b1/the-on-call-rotation-that-quietly-burned-out-its-best-people-3gjn"
+    ],
+    "response": {
+      "items": [
+        {
+          "title": "The API Change That Leaves Deployments Green—and Wrong",
+          "summary": "GitHub reportedly removed `merge_commit_sha` from pull-request responses without breaking the endpoint or returning an error. That is a sharp example of how schema drift can corrupt deployment, release, and changelog automation while every conventional uptime check remains green.",
+          "angle": "Treat successful HTTP responses with missing semantics as a reliability failure, and show how automation should detect contract degradation.",
+          "interests": [
+            "SRE",
+            "observability",
+            "security"
+          ],
+          "format": "short",
+          "points": [
+            "Why silent field removal is more dangerous than an explicit API failure",
+            "How deployment automation can select or report the wrong commit",
+            "Contract tests for required fields and semantic invariants",
+            "Telemetry for null-rate and shape changes, not just HTTP status",
+            "Safe migration and version-pinning strategies"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/driftsignal/github-quietly-removed-mergecommitsha-from-its-api-your-automation-wont-error-itll-just-be-4a6a",
+              "title": "GitHub Quietly Removed merge_commit_sha From Its API. Your Automation Won't Error, It'll Just Be Wrong."
+            }
+          ],
+          "confidence": 0.94
+        },
+        {
+          "title": "The Memory Hierarchy Is Becoming a Scheduling Problem",
+          "summary": "Linux and hardware work on tiered memory is accelerating around DRAM, high-bandwidth memory, and CXL-attached capacity. The important operational question is no longer simply how much memory a machine has, but whether the kernel and workload can place hot data on the right tier without turning latency into an invisible tail.",
+          "angle": "Explain tiered memory as a new source of performance variance that belongs in capacity planning and observability.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "distributed systems",
+            "observability"
+          ],
+          "format": "long-form",
+          "points": [
+            "What DRAM, HBM, and CXL tiers change operationally",
+            "Placement, migration, and access-latency trade-offs",
+            "Why averages hide tier-induced tail latency",
+            "Metrics and tracing needed to correlate memory placement with workload behavior",
+            "When tiering beats scale-out—and when it creates a new failure mode"
+          ],
+          "sources": [
+            {
+              "url": "https://lwn.net/Articles/1092001/",
+              "title": "Recent work in memory tiering"
+            }
+          ],
+          "confidence": 0.88
+        },
+        {
+          "title": "NVIDIA Buying Hugging Face Changes Who Owns the AI Supply Chain",
+          "summary": "NVIDIA’s reported $13 billion acquisition of Hugging Face would put a major model, dataset, and tooling hub under the control of the dominant accelerator vendor. Even if Hugging Face remains open, the deal raises practical questions about governance, artifact distribution, neutrality, and the reproducibility of AI infrastructure.",
+          "angle": "Analyze the acquisition as an infrastructure and dependency-concentration event, not merely an AI business deal.",
+          "interests": [
+            "AI engineering",
+            "security",
+            "distributed systems"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why Hugging Face occupies a strategic layer above individual models",
+            "The risks of concentrating model, dataset, and hardware interests",
+            "Open-source governance versus operational control",
+            "Artifact availability, provenance, signing, and mirror strategies",
+            "How teams should reduce single-platform dependency"
+          ],
+          "sources": [
+            {
+              "url": "https://arstechnica.com/ai/2026/09/nvidia-buys-hugging-face-the-github-of-ai-for-13-billion/",
+              "title": "Nvidia buys Hugging Face, the GitHub of AI, for $13 billion"
+            },
+            {
+              "url": "https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html",
+              "title": "Nvidia to acquire Hugging Face"
+            }
+          ],
+          "confidence": 0.83
+        },
+        {
+          "title": "Your Query Plan Is Sensitive Production Data, Not Just Debugging Output",
+          "summary": "A SQL review bot can receive much more than query text: `EXPLAIN ANALYZE` may contain actual rows, customer identifiers, filters, and workload-specific details. Sending those plans to a model creates a data-governance and credential-boundary problem alongside the query-optimization problem.",
+          "angle": "Build a threat model for AI-assisted database troubleshooting and define what evidence can safely cross the database boundary.",
+          "interests": [
+            "security",
+            "AI engineering",
+            "observability"
+          ],
+          "format": "long-form",
+          "points": [
+            "How runtime plans leak values and business context",
+            "The difference between static plans and execution evidence",
+            "Redaction, tokenisation, and local-model options",
+            "Prompt and tool boundaries for SQL review agents",
+            "Auditability, retention, and reproducible advice"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/dataio_4921/when-runtime-plans-enter-the-prompt-a-structured-debate-for-sql-review-bots-2i3e",
+              "title": "When Runtime Plans Enter the Prompt: A Structured Debate for SQL Review Bots"
+            }
+          ],
+          "confidence": 0.9
+        },
+        {
+          "title": "A Self-Improving Agent Needs a Release Gate More Than a Better Prompt",
+          "summary": "An open-source agent that rewrites its own system prompt reportedly improved only when candidate edits were A/B-tested and rejected unless they produced statistically meaningful gains. The useful lesson is broader than prompt engineering: autonomous optimisation needs promotion criteria, rollback, and evidence just like production software.",
+          "angle": "Frame self-modifying agents as a deployment pipeline with evaluation gates, not as magical recursive improvement.",
+          "interests": [
+            "AI engineering",
+            "SRE",
+            "observability",
+            "security"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why self-editing creates a new form of configuration drift",
+            "Separating exploration from the production prompt",
+            "Evaluation design, statistical noise, and false wins",
+            "Promotion, rollback, and audit trails",
+            "Failure containment when an agent optimises the wrong metric"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/debashish_ghosal/my-self-improving-agent-still-couldnt-improve-that-was-the-breakthrough-mni",
+              "title": "My Self-Improving Agent Still Couldn't Improve. That Was the Breakthrough."
+            }
+          ],
+          "confidence": 0.76
+        },
+        {
+          "title": "The On-Call Rotation Was a Spreadsheet; the Expertise Graph Was the Real Schedule",
+          "summary": "A nominally balanced on-call rota can still depend on the same small group of engineers whenever difficult incidents arise. This is a useful left-field SRE story about hidden operational load, undocumented system knowledge, and why schedule fairness is not the same as sustainable ownership.",
+          "angle": "Measure on-call burden by pages, escalations, interrupt time, and expertise concentration rather than by calendar coverage.",
+          "interests": [
+            "SRE",
+            "observability",
+            "distributed systems"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why equal shifts do not produce equal cognitive load",
+            "Detecting shadow escalation and specialist bottlenecks",
+            "Knowledge concentration as an operational risk",
+            "Metrics for interruption cost and incident complexity",
+            "Practical fixes: service ownership, runbooks, pairing, and alert redesign"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/serguey_shinder_4ab9b87b1/the-on-call-rotation-that-quietly-burned-out-its-best-people-3gjn",
+              "title": "The On-Call Rotation That Quietly Burned Out Its Best People"
+            }
+          ],
+          "confidence": 0.71
+        }
+      ]
+    }
+  },
+  {
+    "model": "gpt-5.6-luna",
+    "repeat": 1,
+    "latency_s": 36.5,
+    "tokens": 39096,
+    "schema_valid": true,
+    "schema_errors": [],
+    "n": 6,
+    "grounding": 0.8888888888888888,
+    "sourced": 1.0,
+    "conf_spread": 0.32999999999999996,
+    "conf_stdev": 0.10884494578170463,
+    "points_ok": 1.0,
+    "angle_distinct": 1.0,
+    "source_variety": 1.0,
+    "primary": [
+      "https://dev.to/driftsignal/github-quietly-removed-mergecommitsha-from-its-api-your-automation-wont-error-itll-just-be-4a6a",
+      "https://lwn.net/Articles/1092001/",
+      "https://arstechnica.com/ai/2026/09/03/nvidia-buys-hugging-face-the-github-of-ai-for-13-billion/",
+      "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+      "https://news.ycombinator.com/item?id=49551096",
+      "https://www.discoverwildlife.com/animal-facts/artificial-beaver-dams-california"
+    ],
+    "response": {
+      "items": [
+        {
+          "title": "The Most Dangerous API Breaking Changes Still Return HTTP 200",
+          "summary": "GitHub reportedly removed `merge_commit_sha` from pull-request responses without making dependent requests fail, leaving automation to continue with incomplete data. A similar pattern appeared when FedEx retired its SOAP API and stores silently lost shipping rates. The common failure is semantic breakage: the interface remains reachable while its meaning changes.",
+          "angle": "Treat schema and contract drift as an observability problem, and show how consumers can detect missing, null, stale, or contradictory fields before they trigger incorrect deployments or transactions.",
+          "interests": [
+            "SRE",
+            "observability",
+            "distributed systems",
+            "security"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why transport-level health checks miss semantic failures",
+            "Contract tests, schema-diff gates, and consumer-driven compatibility checks",
+            "Metrics for missing fields and business outcomes, not just request success",
+            "Safe handling of API version sunsets and migration windows",
+            "Designing automation to fail closed when identity or pricing data disappears"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/driftsignal/github-quietly-removed-mergecommitsha-from-its-api-your-automation-wont-error-itll-just-be-4a6a",
+              "title": "GitHub Quietly Removed merge_commit_sha From Its API. Your Automation Won't Error, It'll Just Be Wrong."
+            },
+            {
+              "url": "https://dev.to/jessriche/fedex-shut-down-its-soap-api-your-woocommerce-store-might-have-failed-silently-4g99",
+              "title": "FedEx Shut Down Its SOAP API. Your WooCommerce Store Might Have Failed Silently"
+            }
+          ],
+          "confidence": 0.97
+        },
+        {
+          "title": "CXL Memory Is Fast Enough to Matter—and Slow Enough to Hurt",
+          "summary": "Linux work on tiered memory is accelerating as systems combine DRAM, high-bandwidth memory, and slower CXL-attached capacity. The engineering challenge is no longer simply adding RAM; it is ensuring allocation and migration policies match workload latency sensitivity.",
+          "angle": "Explain tiered memory as a scheduling and tail-latency problem for operators, with practical guidance on what to measure before trusting automatic placement.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "hardware",
+            "distributed systems",
+            "observability"
+          ],
+          "format": "long-form",
+          "points": [
+            "The latency and bandwidth differences between memory tiers",
+            "How page placement and migration affect p95 and p99 latency",
+            "NUMA, CXL, reclaim, and workload locality interactions",
+            "Which workloads benefit and which become unpredictable",
+            "Operational metrics and benchmark designs for validating tiering"
+          ],
+          "sources": [
+            {
+              "url": "https://lwn.net/Articles/1092001/",
+              "title": "Recent work in memory tiering"
+            }
+          ],
+          "confidence": 0.93
+        },
+        {
+          "title": "Nvidia Bought the AI Model Commons. What Happens to the Neutral Layer?",
+          "summary": "Nvidia’s reported acquisition of Hugging Face would put a major model, dataset, and tooling hub under the control of the dominant AI accelerator vendor. Even if the platform remains open, the ownership change raises questions about governance, incentives, infrastructure lock-in, and the future of portable AI stacks.",
+          "angle": "Analyse the acquisition as an infrastructure and supply-chain event rather than a corporate headline: identify which layers of an AI platform need genuine portability and independent governance.",
+          "interests": [
+            "AI engineering",
+            "security",
+            "hardware",
+            "open-source"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why Hugging Face functions as more than a model repository",
+            "Potential benefits from tighter hardware and software integration",
+            "Risks around ecosystem neutrality, defaults, and distribution power",
+            "Reproducibility, provenance, licensing, and model supply-chain controls",
+            "Practical portability measures for teams deploying open models"
+          ],
+          "sources": [
+            {
+              "url": "https://arstechnica.com/ai/2026/09/03/nvidia-buys-hugging-face-the-github-of-ai-for-13-billion/",
+              "title": "Nvidia buys Hugging Face, the GitHub of AI, for $13 billion"
+            },
+            {
+              "url": "https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html",
+              "title": "Nvidia to acquire Hugging Face"
+            }
+          ],
+          "confidence": 0.9
+        },
+        {
+          "title": "Private OCR Is Finally Practical—If You Can Afford the Browser Download",
+          "summary": "Browser-native OCR pipelines can render PDFs, detect text, recognise words, and extract entities without uploading documents to a third-party service. That changes the privacy boundary for sensitive records, but shifts cost into client CPU, memory, bundle size, model distribution, and device compatibility.",
+          "angle": "Frame local inference as a systems trade-off, not an automatic privacy win: compare data minimisation against performance, model integrity, accessibility, and operational support costs.",
+          "interests": [
+            "AI engineering",
+            "security",
+            "observability"
+          ],
+          "format": "long-form",
+          "points": [
+            "The hosted OCR data-flow and its exposure points",
+            "What browser-side ONNX inference removes—and what it does not",
+            "Cold-start download size, mobile performance, and memory pressure",
+            "Model provenance, integrity checks, and update management",
+            "When hybrid or redacted server-side processing remains the better design"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+              "title": "Your OCR pipeline probably uploads the document. It doesn't have to"
+            },
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/a-document-pipeline-in-30-lines-running-in-a-browser-tab-112c",
+              "title": "A document pipeline in 30 lines, running in a browser tab"
+            }
+          ],
+          "confidence": 0.86
+        },
+        {
+          "title": "When Every AI Provider Fails Together, Your Fallback Plan Is Fiction",
+          "summary": "A discussion of OpenAI, Claude, and Grok becoming unavailable at the same time highlights a neglected reliability assumption: providers that look independent may share upstream infrastructure, networks, dependencies, or operational failure modes. Model switching alone is not disaster recovery.",
+          "angle": "Turn multi-model resilience into dependency-graph engineering, including degraded modes that preserve core workflows when all external inference providers are unavailable.",
+          "interests": [
+            "SRE",
+            "AI engineering",
+            "distributed systems",
+            "observability"
+          ],
+          "format": "short",
+          "points": [
+            "Correlated failure versus genuine provider independence",
+            "Dependency mapping beyond API endpoints and vendor names",
+            "Caching, queued work, deterministic fallbacks, and human escalation",
+            "Readiness probes that test useful model capability rather than reachability",
+            "Game days for total inference-provider loss"
+          ],
+          "sources": [
+            {
+              "url": "https://news.ycombinator.com/item?id=49551096",
+              "title": "Ask HN: Why are OpenAI, Claude, and Grok simultaneously down? Coincidence?"
+            }
+          ],
+          "confidence": 0.79
+        },
+        {
+          "title": "Beaver Dams Are a Lesson in Resilience Engineering",
+          "summary": "Artificial beaver dams reportedly increased juvenile coho salmon survival from 8% to 60% by changing the surrounding flow and habitat. The result is a useful left-field analogy for resilient systems: sometimes the highest-leverage intervention is not making the main path faster, but creating buffers, pools, and alternate routes.",
+          "angle": "Use watershed restoration to illuminate SRE concepts such as slack capacity, graceful degradation, feedback loops, and infrastructure that improves survivability under variable conditions.",
+          "interests": [
+            "SRE",
+            "distributed systems",
+            "observability"
+          ],
+          "format": "short",
+          "points": [
+            "How small structural changes alter system-wide conditions",
+            "Buffers and slack as resilience mechanisms rather than waste",
+            "Why local interventions can improve tail outcomes",
+            "Feedback loops and monitoring after an intervention",
+            "Where the analogy breaks down in engineered systems"
+          ],
+          "sources": [
+            {
+              "url": "https://www.discoverwildlife.com/animal-facts/artificial-beaver-dams-california",
+              "title": "Artificial beaver dams saw juvenile coho salmon survival rates go from 8% to 60%"
+            }
+          ],
+          "confidence": 0.64
+        }
+      ]
+    }
+  },
+  {
+    "model": "gpt-5.6-terra",
+    "repeat": 0,
+    "latency_s": 44.6,
+    "tokens": 23680,
+    "schema_valid": true,
+    "schema_errors": [],
+    "n": 6,
+    "grounding": 1.0,
+    "sourced": 1.0,
+    "conf_spread": 0.32000000000000006,
+    "conf_stdev": 0.11006311320732705,
+    "points_ok": 1.0,
+    "angle_distinct": 1.0,
+    "source_variety": 1.0,
+    "primary": [
+      "https://lwn.net/Articles/1092001/",
+      "https://blog.jim-nielsen.com/2026/stop-with-the-uptime-percentage/",
+      "https://dev.to/dataio_4921/when-runtime-plans-enter-the-prompt-a-structured-debate-for-sql-review-bots-2i3e",
+      "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+      "https://dev.to/faizan_shakeel_1dda753363/stop-pasting-your-jwts-into-random-websites-to-decode-them-18nl",
+      "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d"
+    ],
+    "response": {
+      "items": [
+        {
+          "title": "Tiered Memory Is Becoming a Scheduling Problem, Not a Hardware Upgrade",
+          "summary": "Linux’s emerging work on DRAM, HBM, and CXL memory tiering exposes a practical operational problem: placement policy can dominate workload performance once memory has materially different latency and bandwidth characteristics. The useful story is not that tiered memory exists, but how operators should measure, constrain, and debug it before treating capacity as interchangeable.",
+          "angle": "Write it as an SRE readiness guide for the point where a memory upgrade silently becomes a workload-placement and observability problem. Format: long-form.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "observability",
+            "distributed systems",
+            "hardware"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why DRAM, HBM, and CXL tiers invalidate a single notion of available memory",
+            "Which workloads are likely to benefit or regress under automatic placement",
+            "The signals to collect: allocation locality, reclaim activity, latency, throughput, and tail behavior",
+            "How NUMA policy, cgroups, and workload isolation interact with tiering",
+            "A safe evaluation plan: benchmark representative pressure patterns before production rollout"
+          ],
+          "sources": [
+            {
+              "url": "https://lwn.net/Articles/1092001/",
+              "title": "Recent work in memory tiering"
+            }
+          ],
+          "confidence": 0.91
+        },
+        {
+          "title": "Stop Reporting Uptime: Report Whether Users Could Finish the Job",
+          "summary": "A service can retain an impressive availability percentage while users cannot check out, authenticate, retrieve data, or receive a crucial third-party quote. The stronger reliability measure connects service objectives to completed user journeys, including the quiet failures that conventional probes overlook.",
+          "angle": "Use silent third-party API degradation as the foil for an argument about outcome-based SLIs, dependency-aware synthetic checks, and error-budget ownership. Format: long-form.",
+          "interests": [
+            "SRE",
+            "observability",
+            "distributed systems",
+            "networking"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why host and HTTP-success uptime are inadequate proxies for user value",
+            "The difference between availability of a component and completion of a customer journey",
+            "How a retired dependency can produce green dashboards and broken commerce",
+            "Designing synthetic transactions that exercise critical integrations",
+            "Choosing SLIs, alert thresholds, and fallbacks for partial failure",
+            "How to avoid creating expensive, brittle synthetic-monitoring theater"
+          ],
+          "sources": [
+            {
+              "url": "https://blog.jim-nielsen.com/2026/stop-with-the-uptime-percentage/",
+              "title": "Can We Stop With the Uptime Percentages?"
+            },
+            {
+              "url": "https://dev.to/jessriche/fedex-shut-down-its-soap-api-your-woocommerce-store-might-have-failed-silently-4g99",
+              "title": "FedEx Shut Down Its SOAP API. Your WooCommerce Store Might Have Failed Silently"
+            }
+          ],
+          "confidence": 0.87
+        },
+        {
+          "title": "Your SQL Review Bot May Be an Exfiltration Path",
+          "summary": "Runtime query plans are valuable evidence during an incident, but they can include literals, row estimates, identifiers, and operational metadata that should not automatically enter an external model context. Treating “paste EXPLAIN ANALYZE into a bot” as a normal review step turns debugging convenience into a data-governance boundary.",
+          "angle": "Frame the piece around a concrete policy: what plan data can leave the database environment, how it is redacted, who approves exceptions, and how a local or gated review path preserves diagnostic value. Format: long-form.",
+          "interests": [
+            "security",
+            "AI engineering",
+            "observability",
+            "SRE",
+            "distributed systems"
+          ],
+          "format": "long-form",
+          "points": [
+            "What runtime plans reveal beyond the SQL text",
+            "Why ad hoc redaction is unreliable during an on-call incident",
+            "A data classification model for queries, plans, bindings, and traces",
+            "Sanitisation, allowlists, and local-review alternatives",
+            "Auditability and retention requirements for AI-assisted database analysis",
+            "How to test that a review workflow does not leak sensitive values"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/dataio_4921/when-runtime-plans-enter-the-prompt-a-structured-debate-for-sql-review-bots-2i3e",
+              "title": "When Runtime Plans Enter the Prompt: A Structured Debate for SQL Review Bots"
+            }
+          ],
+          "confidence": 0.82
+        },
+        {
+          "title": "CERN’s Debian Move Is a Lesson in Treating Fleet Linux as a Product",
+          "summary": "CERN’s reported transition of industrial computers from a long-standing RHEL estate to Debian is interesting less as a distro contest than as an illustration of institutional operating-system migration. Industrial and scientific fleets make lifecycle support, hardware qualification, packaging, configuration management, and rollback far more consequential than a developer workstation preference.",
+          "angle": "Examine the migration as an operator’s playbook: identify the contracts a Linux distribution supplies, then show how to replace or validate each one before changing a fleet. Format: long-form.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "security",
+            "hardware"
+          ],
+          "format": "long-form",
+          "points": [
+            "The hidden dependencies in an enterprise Linux estate: drivers, repositories, tooling, support, and compliance",
+            "Why industrial systems raise the cost of kernel and userspace change",
+            "Inventory and compatibility testing before the first migration wave",
+            "Image pipelines, staged rollout rings, rollback, and long-lived hosts",
+            "Security patching and provenance after changing distribution ecosystems",
+            "What other infrastructure teams should learn without copying CERN’s decision"
+          ],
+          "sources": [
+            {
+              "url": "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+              "title": "CERN transitioning industrial computers to Debian after being a longtime RHEL institution"
+            }
+          ],
+          "confidence": 0.76
+        },
+        {
+          "title": "A JWT Decoder Is a Supply-Chain Decision in Disguise",
+          "summary": "Engineers often paste a JWT into a decoder while debugging authentication, even though the token may still be a bearer credential. The immediate advice is simple—decode locally—but the larger lesson is that routine troubleshooting workflows are part of an organisation’s secret-handling attack surface.",
+          "angle": "Make this a short, practical security post that turns one familiar shortcut into a team-safe debugging pattern, including revocation and incident response when a token has already been exposed. Format: short post.",
+          "interests": [
+            "security",
+            "SRE",
+            "networking"
+          ],
+          "format": "short",
+          "points": [
+            "Why a JWT can be usable even though its claims are merely encoded",
+            "A local decoding command or small offline script",
+            "What must never be logged, pasted into tickets, or sent to third-party tools",
+            "How to distinguish harmless test tokens from production credentials",
+            "What to do if a live token has already been shared",
+            "A lightweight policy and developer-tooling guardrail"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/faizan_shakeel_1dda753363/stop-pasting-your-jwts-into-random-websites-to-decode-them-18nl",
+              "title": "Stop pasting your JWTs into random websites to decode them"
+            }
+          ],
+          "confidence": 0.68
+        },
+        {
+          "title": "Private OCR in the Browser Is Promising—Until You Price the First Byte",
+          "summary": "Browser-native PDF rendering and OCR can keep sensitive documents off a hosted OCR provider, replacing a data-transfer problem with client compute, model-download, compatibility, and performance constraints. That trade-off makes a useful left-field case study in privacy-preserving edge inference rather than another generic AI feature announcement.",
+          "angle": "Assess client-side OCR as a production architecture: specify the privacy threat model, then quantify cold-start, device capability, accuracy, failure handling, and accessibility costs. Format: short post.",
+          "interests": [
+            "AI engineering",
+            "security",
+            "observability",
+            "networking"
+          ],
+          "format": "short",
+          "points": [
+            "The data-flow difference between hosted and in-browser OCR",
+            "Threat-model limits: browser execution does not automatically solve endpoint or extension risk",
+            "Model and runtime download costs, caching, and offline behavior",
+            "Device variability, memory pressure, and failure telemetry that avoids collecting documents",
+            "Accuracy evaluation and human-correction paths",
+            "Where client-side processing is appropriate and where a controlled server remains better"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+              "title": "Your OCR pipeline probably uploads the document. It doesn't have to"
+            },
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/a-document-pipeline-in-30-lines-running-in-a-browser-tab-112c",
+              "title": "A document pipeline in 30 lines, running in a browser tab"
+            }
+          ],
+          "confidence": 0.59
+        }
+      ]
+    }
+  },
+  {
+    "model": "gpt-5.6-terra",
+    "repeat": 1,
+    "latency_s": 42.5,
+    "tokens": 23800,
+    "schema_valid": true,
+    "schema_errors": [],
+    "n": 6,
+    "grounding": 1.0,
+    "sourced": 1.0,
+    "conf_spread": 0.33000000000000007,
+    "conf_stdev": 0.11393224107141735,
+    "points_ok": 1.0,
+    "angle_distinct": 1.0,
+    "source_variety": 1.0,
+    "primary": [
+      "https://dev.to/jessriche/fedex-shut-down-its-soap-api-your-woocommerce-store-might-have-failed-silently-4g99",
+      "https://dev.to/dataio_4921/when-runtime-plans-enter-the-prompt-a-structured-debate-for-sql-review-bots-2i3e",
+      "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+      "https://lwn.net/Articles/1092001/",
+      "https://dev.to/serguey_shinder_4ab9b87b1/the-on-call-rotation-that-quietly-burned-out-its-best-people-3gjn",
+      "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d"
+    ],
+    "response": {
+      "items": [
+        {
+          "title": "Your Availability Dashboard Is Measuring the Wrong Failure",
+          "summary": "Two candidates describe failures that leave HTTP checks green while a customer-critical capability disappears: a shipping-rate integration after an API shutdown, and automation that keeps running on a removed GitHub field. The article can make the case that availability must be defined around verified business outcomes, not a percentage or a successful endpoint probe.",
+          "angle": "Format: long-form. Treat silent semantic degradation as an observability design problem: define, instrument, and alert on the outcome a user actually needs.",
+          "interests": [
+            "SRE",
+            "observability",
+            "distributed systems",
+            "security"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why 200 responses and uptime percentages can coexist with a broken customer journey",
+            "The difference between infrastructure, dependency, workflow, and business-SLI layers",
+            "Synthetic transactions and contract assertions for third-party APIs",
+            "Schema and API-version canaries that detect missing, null, or semantically changed fields",
+            "Fallback behaviour, reconciliation, and incident ownership when a dependency degrades quietly"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/jessriche/fedex-shut-down-its-soap-api-your-woocommerce-store-might-have-failed-silently-4g99",
+              "title": "FedEx Shut Down Its SOAP API. Your WooCommerce Store Might Have Failed Silently"
+            },
+            {
+              "url": "https://dev.to/driftsignal/github-quietly-removed-mergecommitsha-from-its-api-your-automation-wont-error-itll-just-be-4a6a",
+              "title": "GitHub Quietly Removed merge_commit_sha From Its API. Your Automation Won't Error, It'll Just Be Wrong."
+            },
+            {
+              "url": "https://blog.jim-nielsen.com/2026/stop-with-the-uptime-percentage/",
+              "title": "Can We Stop With the Uptime Percentages?"
+            }
+          ],
+          "confidence": 0.91
+        },
+        {
+          "title": "Before You Paste an EXPLAIN Plan into an LLM, Decide What It Is Allowed to Remember",
+          "summary": "Runtime query plans can contain literals, row counts, and customer-linked filters, making a seemingly mundane performance-review workflow a data-export decision. The stronger story is not generic AI security: it is how to build a bounded, auditable path from production diagnostics to model-assisted analysis.",
+          "angle": "Format: long-form. Use SQL-plan review as a concrete case study in data classification, redaction limits, model-boundary controls, and evidence retention.",
+          "interests": [
+            "security",
+            "observability",
+            "AI engineering",
+            "SRE"
+          ],
+          "format": "long-form",
+          "points": [
+            "What query plans and query telemetry can reveal beyond the SQL text",
+            "Why redaction after collection is weaker than minimising data at the source",
+            "A review pipeline: allowlisted fields, parameter stripping, aggregation, and local validation",
+            "Choosing among local models, approved external services, and no-model escalation paths",
+            "Audit trails, retention, access controls, and how to evaluate whether the assistant improves reviews",
+            "Failure modes: misleading plans, stale statistics, and false confidence from generated advice"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/dataio_4921/when-runtime-plans-enter-the-prompt-a-structured-debate-for-sql-review-bots-2i3e",
+              "title": "When Runtime Plans Enter the Prompt: A Structured Debate for SQL Review Bots"
+            },
+            {
+              "url": "https://dev.to/ayan_mohamed/securing-the-ai-pipeline-how-to-apply-devsecops-to-genai-30of",
+              "title": "Securing the AI Pipeline: How to Apply DevSecOps to GenAI"
+            }
+          ],
+          "confidence": 0.86
+        },
+        {
+          "title": "CERN’s Move to Debian Is a Reminder That Enterprise Linux Is an Operations Dependency",
+          "summary": "CERN reportedly plans to transition industrial computers from its long-standing RHEL estate to Debian. Rather than treating it as a distribution-war story, the article can examine what a fleet migration exposes: lifecycle commitments, vendor coupling, reproducible configuration, real-time or industrial constraints, and the cost of changing a platform beneath critical workloads.",
+          "angle": "Format: long-form. Frame distribution choice as a supply-chain and fleet-engineering decision with an exit plan, not an administrator preference.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "security",
+            "Kubernetes"
+          ],
+          "format": "long-form",
+          "points": [
+            "What makes industrial and scientific fleets different from disposable cloud workloads",
+            "The operational dependencies hidden behind a Linux distribution choice",
+            "Migration inventory: kernel, drivers, packages, images, configuration management, and support contracts",
+            "How to run parallel validation and staged rollouts without turning migration into a big-bang event",
+            "Security patch cadence, provenance, and long-term maintenance as selection criteria",
+            "What Kubernetes teams can borrow from host-OS migration discipline"
+          ],
+          "sources": [
+            {
+              "url": "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+              "title": "CERN transitioning industrial computers to Debian after being a longtime RHEL institution"
+            }
+          ],
+          "confidence": 0.78
+        },
+        {
+          "title": "CXL Will Not Fix Memory Pressure Unless Linux Learns Your Workload",
+          "summary": "Tiered-memory systems promise more capacity by mixing DRAM with HBM or slower CXL-attached memory, but allocation placement can determine whether that capacity helps or quietly destroys latency. This is a useful hardware-to-kernel story for operators planning AI, database, or Kubernetes nodes whose bottleneck is no longer simply CPU or RAM size.",
+          "angle": "Format: long-form. Translate kernel tiering work into practical placement, benchmarking, and scheduling questions for modern infrastructure teams.",
+          "interests": [
+            "Linux",
+            "Kubernetes",
+            "observability",
+            "distributed systems",
+            "AI engineering"
+          ],
+          "format": "long-form",
+          "points": [
+            "The latency and bandwidth trade-offs among DRAM, HBM, and CXL memory",
+            "Why capacity metrics alone hide remote-memory and placement costs",
+            "Current Linux tiering approaches and the design questions they still face",
+            "Benchmarking methodology: tail latency, memory locality, reclaim behaviour, and workload mix",
+            "How cgroups, NUMA awareness, and Kubernetes scheduling complicate multi-tier hosts",
+            "Which workloads are plausible early adopters and which should stay on conventional memory"
+          ],
+          "sources": [
+            {
+              "url": "https://lwn.net/Articles/1092001/",
+              "title": "Recent work in memory tiering"
+            }
+          ],
+          "confidence": 0.73
+        },
+        {
+          "title": "The On-Call Roster Is Not the System: Measure Who Actually Carries the Pager",
+          "summary": "A nominally fair rotation can still route the hardest work to a small set of experts through escalations, informal messages, and recurring incident ownership. The article should turn a familiar people story into an SRE systems problem: collect the right evidence, reduce concentration risk, and design a sustainable escalation model without pretending every incident is interchangeable.",
+          "angle": "Format: short post. Focus on operational metrics that reveal hidden on-call load and on concrete interventions that make expertise less of a single point of failure.",
+          "interests": [
+            "SRE",
+            "observability",
+            "distributed systems"
+          ],
+          "format": "short",
+          "points": [
+            "Why scheduled primary duty is a poor proxy for operational burden",
+            "Signals to measure: escalations, after-hours consultations, incident-role recurrence, and recovery work",
+            "How expertise concentration becomes a reliability risk as well as a retention risk",
+            "Runbooks, pairing, service ownership, and game days as load-distribution mechanisms",
+            "Avoiding perverse metrics that punish the people who help most"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/serguey_shinder_4ab9b87b1/the-on-call-rotation-that-quietly-burned-out-its-best-people-3gjn",
+              "title": "The On-Call Rotation That Quietly Burned Out Its Best People"
+            }
+          ],
+          "confidence": 0.65
+        },
+        {
+          "title": "Private OCR in the Browser Is a Security Architecture, Not a Marketing Checkbox",
+          "summary": "Browser-native PDF rendering and ONNX inference offer an appealing alternative to uploading sensitive documents to a hosted OCR API. The interesting engineering question is where the privacy boundary really lies once model assets, workers, browser memory, caching, observability, and performance constraints enter the design.",
+          "angle": "Format: short post. Evaluate local OCR as a threat-model and deployment trade-off, including the cases where it genuinely reduces exposure and the cases where it does not.",
+          "interests": [
+            "security",
+            "AI engineering",
+            "observability",
+            "distributed systems"
+          ],
+          "format": "short",
+          "points": [
+            "Compare data flows for hosted OCR and browser-local inference",
+            "Threat-model browser storage, caches, telemetry, extensions, and third-party model delivery",
+            "Performance costs: download size, device capability, battery, and failure handling",
+            "How to prove no-document-upload claims with network inspection and CSP controls",
+            "When local processing is appropriate and when a controlled server-side path is safer"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+              "title": "Your OCR pipeline probably uploads the document. It doesn't have to"
+            },
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/a-document-pipeline-in-30-lines-running-in-a-browser-tab-112c",
+              "title": "A document pipeline in 30 lines, running in a browser tab"
+            }
+          ],
+          "confidence": 0.58
+        }
+      ]
+    }
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "repeat": 0,
+    "latency_s": 38.5,
+    "tokens": 40758,
+    "schema_valid": true,
+    "schema_errors": [],
+    "n": 6,
+    "grounding": 1.0,
+    "sourced": 1.0,
+    "conf_spread": 0.38,
+    "conf_stdev": 0.12192894105447923,
+    "points_ok": 1.0,
+    "angle_distinct": 1.0,
+    "source_variety": 1.0,
+    "primary": [
+      "https://blog.jim-nielsen.com/2026/stop-with-the-uptime-percentage/",
+      "https://lwn.net/Articles/1092001/",
+      "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+      "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+      "https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html",
+      "https://www.discoverwildlife.com/animal-facts/artificial-beaver-dams-california"
+    ],
+    "response": {
+      "items": [
+        {
+          "title": "Your Service Is Up, but the Business Is Broken",
+          "summary": "Uptime percentages can remain reassuringly green while a dependency silently stops returning essential data or automation begins acting on the wrong commit. The GitHub and FedEx examples expose a broader observability failure: transport success is routinely mistaken for correct system behaviour.",
+          "angle": "Long-form — argue that operators should measure verified outcomes and invariants, not merely successful requests or reachable endpoints.",
+          "interests": [
+            "SRE",
+            "observability",
+            "distributed systems"
+          ],
+          "format": "long-form",
+          "points": [
+            "Why HTTP 200 responses and healthy processes do not prove correctness",
+            "How removed or nullable API fields create silent semantic failures",
+            "Why checkout rates, deployment provenance, and similar business outcomes need explicit checks",
+            "Contract tests, schema-drift detection, synthetic transactions, and canary assertions",
+            "Designing alerts around impossible or missing states rather than infrastructure availability alone",
+            "How error budgets should account for wrong results, not just downtime"
+          ],
+          "sources": [
+            {
+              "url": "https://blog.jim-nielsen.com/2026/stop-with-the-uptime-percentage/",
+              "title": "Can We Stop With the Uptime Percentages?"
+            },
+            {
+              "url": "https://dev.to/driftsignal/github-quietly-removed-mergecommitsha-from-its-api-your-automation-wont-error-itll-just-be-4a6a",
+              "title": "GitHub Quietly Removed merge_commit_sha From Its API. Your Automation Won't Error, It'll Just Be Wrong."
+            },
+            {
+              "url": "https://dev.to/jessriche/fedex-shut-down-its-soap-api-your-woocommerce-store-might-have-failed-silently-4g99",
+              "title": "FedEx Shut Down Its SOAP API. Your WooCommerce Store Might Have Failed Silently"
+            }
+          ],
+          "confidence": 0.96
+        },
+        {
+          "title": "Linux Memory Tiering Has a Policy Problem, Not Just a Placement Problem",
+          "summary": "Systems combining DRAM, high-bandwidth memory, and slower CXL-backed capacity make allocation placement a first-order performance concern. Current Linux work suggests the hard part is no longer recognizing heterogeneous memory, but deciding whether the tiering abstractions and migration policies produce predictable results for real workloads.",
+          "angle": "Long-form — explain memory tiering from an operator’s perspective: what the kernel can infer, where automatic migration breaks down, and what must be measured before deploying CXL memory in production.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "observability"
+          ],
+          "format": "long-form",
+          "points": [
+            "The latency, bandwidth, capacity, and NUMA differences between memory tiers",
+            "How Linux promotes, demotes, and reclaims pages",
+            "Why access frequency alone may be an inadequate placement signal",
+            "Workload interference, migration overhead, and performance oscillation",
+            "Counters and benchmarks operators need for evaluating tiering",
+            "When explicit workload placement may beat automatic policy"
+          ],
+          "sources": [
+            {
+              "url": "https://lwn.net/Articles/1092001/",
+              "title": "Recent work in memory tiering"
+            }
+          ],
+          "confidence": 0.89
+        },
+        {
+          "title": "CERN’s Move From RHEL to Debian Is Really a Lesson in Fleet Sovereignty",
+          "summary": "CERN is reportedly moving industrial-computing systems from its longstanding RHEL base to Debian. The technically interesting story is not a distribution popularity contest, but how large operators evaluate lifecycle control, vendor dependence, compatibility, and migration risk across specialized fleets.",
+          "angle": "Long-form — use the migration to examine what distribution choice means when machines are infrastructure with decade-scale lifetimes rather than interchangeable cloud instances.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "security"
+          ],
+          "format": "long-form",
+          "points": [
+            "The operational pressures that can force a distribution reassessment",
+            "Security support horizons, backport policies, and patch provenance",
+            "Application, driver, hardware-certification, and automation compatibility",
+            "How to stage a fleet migration with representative canaries and rollback paths",
+            "The trade-off between vendor support and institutional control",
+            "Why industrial and scientific systems have different lifecycle assumptions from web fleets"
+          ],
+          "sources": [
+            {
+              "url": "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+              "title": "CERN transitioning industrial computers to Debian after being a longtime RHEL institution"
+            }
+          ],
+          "confidence": 0.82
+        },
+        {
+          "title": "Private OCR Moves Into the Browser—and Takes Its Supply Chain With It",
+          "summary": "A browser-native pipeline can render PDFs, detect text, run OCR, and extract entities without uploading sensitive documents to a hosted service. That removes a major disclosure path, but shifts trust toward JavaScript dependencies, model artifacts, browser isolation, caching, and the integrity of the delivery channel.",
+          "angle": "Long-form — threat-model local browser inference honestly, separating the genuine privacy gain of eliminating uploads from the new operational and supply-chain risks it introduces.",
+          "interests": [
+            "security",
+            "AI engineering"
+          ],
+          "format": "long-form",
+          "points": [
+            "How the data flow differs between hosted OCR and in-tab inference",
+            "Which confidentiality risks disappear when documents stay local",
+            "Dependency, model-weight, CDN, service-worker, and extension attack surfaces",
+            "WASM and WebGPU isolation limits and browser resource exhaustion",
+            "First-load size, caching, cold-start latency, and offline operation",
+            "Controls such as pinned assets, restrictive CSP, integrity verification, and network-deny testing"
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+              "title": "Your OCR pipeline probably uploads the document. It doesn't have to"
+            },
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/a-document-pipeline-in-30-lines-running-in-a-browser-tab-112c",
+              "title": "A document pipeline in 30 lines, running in a browser tab"
+            }
+          ],
+          "confidence": 0.77
+        },
+        {
+          "title": "Nvidia Buying Hugging Face Would Collapse Another Layer of the AI Stack",
+          "summary": "Nvidia’s reported $13 billion acquisition of Hugging Face would put a central model registry and developer platform under the dominant supplier of AI accelerators. Even with promises that the platform will remain open, operators should examine how hardware, runtimes, model distribution, and hosted inference could become a single strategic dependency.",
+          "angle": "Short post — map the acquisition as vertical integration and identify the concrete portability and supply-chain questions engineering teams should ask now.",
+          "interests": [
+            "AI engineering",
+            "security",
+            "distributed systems"
+          ],
+          "format": "short",
+          "points": [
+            "Where Hugging Face sits in model discovery, artifact distribution, libraries, and inference",
+            "How ownership could influence defaults, optimization priorities, and hardware support",
+            "Registry concentration as a software supply-chain and availability risk",
+            "The difference between open model artifacts and an open, neutral platform",
+            "Practical portability measures: mirrored artifacts, hashes, reproducible builds, and runtime alternatives"
+          ],
+          "sources": [
+            {
+              "url": "https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html",
+              "title": "Nvidia to acquire Hugging Face"
+            },
+            {
+              "url": "https://arstechnica.com/ai/2026/09/nvidia-buys-hugging-face-the-github-of-ai-for-13-billion/",
+              "title": "Nvidia buys Hugging Face, the GitHub of AI, for $13 billion"
+            }
+          ],
+          "confidence": 0.72
+        },
+        {
+          "title": "What an Artificial Beaver Dam Can Teach Us About Resilient Systems",
+          "summary": "Artificial beaver dams reportedly raised juvenile coho salmon survival from 8% to 60%, making this an unusually vivid example of changing system structure rather than optimizing individual actors. It offers a useful systems-engineering analogy: slowing flows, adding buffers, and creating refuges can improve resilience more than maximizing throughput.",
+          "angle": "Short left-field post — carefully translate ecological restoration into systems concepts without pretending ecosystems and computer infrastructure are interchangeable.",
+          "interests": [
+            "distributed systems",
+            "SRE"
+          ],
+          "format": "short",
+          "points": [
+            "Why altering flow topology can outperform direct intervention on individual components",
+            "Buffers and backpressure as protective mechanisms rather than inefficiencies",
+            "How heterogeneous refuges reduce exposure to transient stress",
+            "The importance of measuring survival or outcomes instead of raw throughput",
+            "Where the analogy to queues, caches, and fault domains is useful—and where it breaks"
+          ],
+          "sources": [
+            {
+              "url": "https://www.discoverwildlife.com/animal-facts/artificial-beaver-dams-california",
+              "title": "Artificial beaver dams saw juvenile coho salmon survival rates go from 8% to 60%"
+            }
+          ],
+          "confidence": 0.58
+        }
+      ]
+    }
+  },
+  {
+    "model": "gpt-5.6-sol",
+    "repeat": 1,
+    "latency_s": 41.9,
+    "tokens": 43289,
+    "schema_valid": true,
+    "schema_errors": [],
+    "n": 6,
+    "grounding": 1.0,
+    "sourced": 1.0,
+    "conf_spread": 0.41999999999999993,
+    "conf_stdev": 0.13877439725444074,
+    "points_ok": 1.0,
+    "angle_distinct": 1.0,
+    "source_variety": 1.0,
+    "primary": [
+      "https://blog.jim-nielsen.com/2026/stop-with-the-uptime-percentage/",
+      "https://lwn.net/Articles/1092001/",
+      "https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html",
+      "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+      "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+      "https://www.discoverwildlife.com/animal-facts/artificial-beaver-dams-california"
+    ],
+    "response": {
+      "items": [
+        {
+          "title": "Your Service Is Up. Your Business Is Still Broken.",
+          "summary": "Uptime percentages miss failures where endpoints return 200 while the system produces the wrong result: a vanished API field, missing shipping rates, or corrupted deployment metadata. These incidents matter because infrastructure monitoring stays green while users and downstream automation absorb the damage.",
+          "angle": "Long-form — use the GitHub and FedEx cases to argue for semantic SLOs, contract tests, and business-outcome probes instead of treating availability as a proxy for correctness.",
+          "interests": [
+            "SRE",
+            "observability",
+            "distributed systems"
+          ],
+          "format": "long-form",
+          "points": [
+            "Explain why availability, correctness, and usefulness are separate reliability properties.",
+            "Show how schema subtraction and dependency retirement can fail silently without transport-level errors.",
+            "Contrast synthetic uptime checks with semantic probes such as verifying a shipping quote or resolved merge commit.",
+            "Recommend consumer-driven contract tests, schema-diff alerts, explicit null handling, and dependency deprecation inventories.",
+            "Discuss SLOs based on completed user outcomes rather than successful HTTP responses.",
+            "Cover observability patterns for detecting plausible-but-wrong outputs before customers report them."
+          ],
+          "sources": [
+            {
+              "url": "https://blog.jim-nielsen.com/2026/stop-with-the-uptime-percentage/",
+              "title": "Can We Stop With the Uptime Percentages?"
+            },
+            {
+              "url": "https://dev.to/driftsignal/github-quietly-removed-mergecommitsha-from-its-api-your-automation-wont-error-itll-just-be-4a6a",
+              "title": "GitHub Quietly Removed merge_commit_sha From Its API. Your Automation Won't Error, It'll Just Be Wrong."
+            },
+            {
+              "url": "https://dev.to/jessriche/fedex-shut-down-its-soap-api-your-woocommerce-store-might-have-failed-silently-4g99",
+              "title": "FedEx Shut Down Its SOAP API. Your WooCommerce Store Might Have Failed Silently"
+            }
+          ],
+          "confidence": 0.96
+        },
+        {
+          "title": "Linux Memory Tiering Has a Policy Problem, Not Just a Placement Problem",
+          "summary": "Linux developers are still working through how to place allocations across DRAM, high-bandwidth memory, and slower CXL-backed tiers. The difficult question is whether increasingly elaborate automatic tiering policies deliver predictable gains for real workloads—or merely move complexity and performance surprises into the kernel.",
+          "angle": "Long-form — explain memory tiering from the operator’s perspective: what the kernel can infer, where those inferences fail, and what evidence is needed before trusting automatic placement in production.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "observability"
+          ],
+          "format": "long-form",
+          "points": [
+            "Describe the latency, bandwidth, capacity, and locality differences among DRAM, HBM, and CXL memory.",
+            "Explain how allocation placement and page migration affect workload tail latency and throughput.",
+            "Examine the tension between automatic kernel policy and explicit application or NUMA controls.",
+            "Identify workload signals that can mislead a tiering policy, including access-pattern changes and memory pressure.",
+            "Lay out a benchmarking method that measures migrations, stalls, reclaim activity, and application-level performance.",
+            "Discuss operational failure modes such as unpredictable regressions and noisy-neighbour effects."
+          ],
+          "sources": [
+            {
+              "url": "https://lwn.net/Articles/1092001/",
+              "title": "Recent work in memory tiering"
+            }
+          ],
+          "confidence": 0.88
+        },
+        {
+          "title": "Nvidia Buying Hugging Face Turns AI’s Shared Infrastructure Into a Supply-Chain Question",
+          "summary": "Nvidia’s reported $13 billion acquisition of Hugging Face would put a central model, dataset, and tooling hub under the control of the dominant AI accelerator vendor. Even if the platform remains nominally open, operators should reassess concentration risk, artifact provenance, portability, and the practical meaning of independence in the AI supply chain.",
+          "angle": "Long-form — avoid merger gossip and examine Hugging Face as critical infrastructure whose ownership can influence model distribution, runtime defaults, and hardware-neutral tooling.",
+          "interests": [
+            "AI engineering",
+            "security",
+            "distributed systems"
+          ],
+          "format": "long-form",
+          "points": [
+            "Map the roles Hugging Face plays as registry, collaboration platform, dependency source, and deployment layer.",
+            "Separate open licensing from control over discovery, hosting, APIs, moderation, and default integrations.",
+            "Assess vertical-integration incentives around CUDA, inference runtimes, and Nvidia hardware.",
+            "Cover operational risks from registry concentration, including outages, policy changes, compromised artifacts, and account controls.",
+            "Recommend model and dataset mirroring, hash verification, provenance records, SBOMs, and portable deployment paths.",
+            "Identify measurable signals that would show whether the platform remains hardware- and vendor-neutral."
+          ],
+          "sources": [
+            {
+              "url": "https://www.cnbc.com/2026/09/03/nvidia-agrees-to-buy-hugging-face-for-almost-13-billion-ai-expansion.html",
+              "title": "Nvidia to acquire Hugging Face"
+            },
+            {
+              "url": "https://arstechnica.com/ai/2026/09/nvidia-buys-hugging-face-the-github-of-ai-for-13-billion/",
+              "title": "Nvidia buys Hugging Face, the GitHub of AI, for $13 billion"
+            }
+          ],
+          "confidence": 0.81
+        },
+        {
+          "title": "Why CERN’s Move From RHEL to Debian Matters Beyond Package Management",
+          "summary": "CERN is reportedly moving industrial computers away from a long-standing RHEL environment toward Debian. For operators, the interesting story is not distro tribalism but how a major institution evaluates lifecycle control, vendor dependence, fleet consistency, hardware support, and the cost of migrating conservative systems.",
+          "angle": "Long-form — treat the migration as a case study in operating-system governance and lifecycle risk for large, long-lived Linux fleets.",
+          "interests": [
+            "Linux",
+            "SRE",
+            "security"
+          ],
+          "format": "long-form",
+          "points": [
+            "Distinguish industrial and accelerator-adjacent systems from ordinary developer workstations or web servers.",
+            "Compare the release, support, packaging, and security-maintenance models that affect fleet operators.",
+            "Examine the hidden migration surface: configuration management, kernel modules, drivers, RPM-specific tooling, and operational knowledge.",
+            "Discuss how organizations quantify vendor lock-in against the cost of owning more integration work.",
+            "Cover staged rollout, compatibility testing, rollback, and mixed-distribution observability.",
+            "Extract lessons applicable to enterprises reconsidering RHEL-compatible distributions after ecosystem changes."
+          ],
+          "sources": [
+            {
+              "url": "https://www.phoronix.com/news/CERN-Goes-Debian-Leaving-RHEL",
+              "title": "CERN transitioning industrial computers to Debian after being a longtime RHEL institution"
+            }
+          ],
+          "confidence": 0.74
+        },
+        {
+          "title": "Private Browser OCR Trades Data Egress for a New Kind of Operations Burden",
+          "summary": "A browser-native OCR pipeline can render PDFs, detect text, recognize words, and extract entities without uploading sensitive documents. That removes a major privacy boundary, but shifts model delivery, memory pressure, browser compatibility, performance telemetry, and correctness onto the client.",
+          "angle": "Long-form — evaluate local inference as an architectural trade rather than a privacy slogan, with a threat model and an operational checklist for deciding whether it is genuinely safer.",
+          "interests": [
+            "security",
+            "AI engineering",
+            "observability"
+          ],
+          "format": "long-form",
+          "points": [
+            "Compare the trust boundaries and data flows of hosted OCR with in-browser inference.",
+            "Account for model and WebAssembly download size, caching, startup latency, memory use, and mobile constraints.",
+            "Explain residual data-leak paths such as analytics, crash reporting, browser extensions, third-party scripts, and remote model assets.",
+            "Cover integrity controls for models and runtime artifacts, including pinning, hashes, CSP, and supply-chain review.",
+            "Define quality and performance telemetry that does not capture document contents.",
+            "Discuss fallback behaviour when WebGPU, WebAssembly features, or memory capacity are unavailable."
+          ],
+          "sources": [
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/your-ocr-pipeline-probably-uploads-the-document-it-doesnt-have-to-5c9d",
+              "title": "Your OCR pipeline probably uploads the document. It doesn't have to"
+            },
+            {
+              "url": "https://dev.to/mykola_melnyk_ml/a-document-pipeline-in-30-lines-running-in-a-browser-tab-112c",
+              "title": "A document pipeline in 30 lines, running in a browser tab"
+            }
+          ],
+          "confidence": 0.66
+        },
+        {
+          "title": "Artificial Beaver Dams Are Reliability Engineering for Rivers",
+          "summary": "Artificial beaver dams reportedly raised juvenile coho salmon survival from 8% to 60%, making this a striking left-field example of redesigning system dynamics rather than optimizing individual components. The restoration work offers useful parallels with buffering, graceful degradation, redundancy, and designing around disturbances.",
+          "angle": "Short post — use ecological restoration as a disciplined systems-engineering analogy, while being careful not to turn one reported result into a universal prescription.",
+          "interests": [
+            "distributed systems",
+            "SRE"
+          ],
+          "format": "short",
+          "points": [
+            "Explain how small structural interventions can change flow, habitat, temperature, and refuge availability.",
+            "Compare dams and floodplains with buffers that absorb bursts and reduce downstream volatility.",
+            "Draw the distinction between improving component survival and changing the surrounding system conditions.",
+            "Relate habitat diversity to redundancy and multiple viable operating states.",
+            "Note the limits of the analogy and the need to test interventions in their local ecological context."
+          ],
+          "sources": [
+            {
+              "url": "https://www.discoverwildlife.com/animal-facts/artificial-beaver-dams-california",
+              "title": "Artificial beaver dams saw juvenile coho salmon survival rates go from 8% to 60%"
+            }
+          ],
+          "confidence": 0.54
+        }
+      ]
+    }
+  }
+]

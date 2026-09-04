@@ -1,14 +1,14 @@
 ---
 date: 2026-05-01
 item_number: 3
-title: “Adaptive Rate-Limit Orchestrator”
+title: Adaptive Rate-Limit Orchestrator
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 3. “Adaptive Rate-Limit Orchestrator”
+## 3. Adaptive Rate-Limit Orchestrator
 
 
 **Problem**  

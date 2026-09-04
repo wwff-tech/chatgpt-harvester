@@ -23,7 +23,7 @@ They largely ignore:
 
 > activation energy.
 
-Research and community discussions continue to emphasise body doubling, external structure, and interruption recovery as central productivity factors. citeturn0search4turn0search20turn0academia44
+Research and community discussions continue to emphasise body doubling, external structure, and interruption recovery as central productivity factors. 
 
 ## Approaches
 
@@ -91,7 +91,7 @@ Very High
 
 ## References
 
-- Body doubling research citeturn0academia44turn0search4turn0search16
-- ADHD productivity discussions citeturn0search12turn0search20
+- Body doubling research 
+- ADHD productivity discussions 
 
 ---

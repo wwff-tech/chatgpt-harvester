@@ -91,4 +91,4 @@ Medium → High
 
 - Architecture decision record methodologies
 - Knowledge management literature
-- Intent-centric engineering research citeturn0academia15
+- Intent-centric engineering research

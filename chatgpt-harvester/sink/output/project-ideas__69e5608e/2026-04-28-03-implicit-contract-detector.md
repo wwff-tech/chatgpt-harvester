@@ -1,14 +1,14 @@
 ---
 date: 2026-04-28
 item_number: 3
-title: “Implicit Contract Detector”
+title: Implicit Contract Detector
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 3. “Implicit Contract Detector”
+## 3. Implicit Contract Detector
 
 
 **Problem**  

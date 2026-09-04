@@ -21,7 +21,7 @@ Critical system assumptions (e.g., “this API is idempotent”, “latency < 20
 
 **Tech hints**
 - Schema for assumption metadata  
-- Integration with observability tools like entity["software","OpenTelemetry","observability framework"]  
+- Integration with observability tools like OpenTelemetry  
 - Graph storage for relationships  
 - Tagging + search  
 

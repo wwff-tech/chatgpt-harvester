@@ -15,7 +15,7 @@ label: project ideas
 
 AI-generated code frequently underperforms on observability concerns.
 
-Humans continue fixing logs and telemetry after generation. citeturn0academia56
+Humans continue fixing logs and telemetry after generation. 
 
 Most organisations lack a way to assess observability coverage systematically.
 

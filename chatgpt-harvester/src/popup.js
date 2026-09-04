@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const statusDot = document.getElementById("statusDot");
   const lastRunEl = document.getElementById("lastRun");
   const nextRunEl = document.getElementById("nextRun");
+  const staleNoteEl = document.getElementById("staleNote");
   const convList = document.getElementById("convList");
   const runBtn = document.getElementById("runBtn");
   const exportBtn = document.getElementById("exportBtn");
@@ -28,6 +29,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       nextRunEl.textContent = "";
     }
 
+    // Staleness banner — the harvest can succeed while the source is dead
+    const feedState = status.feed_state || {};
+    const stale = Object.values(feedState).filter((f) => f.stale);
+    if (stale.length) {
+      const worst = Math.max(...stale.map((f) => daysSince(f.latest_message_time)));
+      staleNoteEl.textContent =
+        `${stale.length} feed${stale.length > 1 ? "s" : ""} producing nothing new ` +
+        `(up to ${worst}d). Harvesting is fine — check the ChatGPT task is not paused.`;
+    } else {
+      staleNoteEl.textContent = "";
+    }
+
     // Conversation list for most recent run
     convList.innerHTML = "";
     if (lr && lr.timestamp) {
@@ -39,14 +52,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         label.className = "conv-label";
         label.textContent = entry.label || entry.conversation_id || "unknown";
         label.title = entry.conversation_id || "";
+
         const st = document.createElement("span");
-        st.className = "status-" + entry.status;
-        st.textContent = entry.status;
+        const feed = feedState[entry.conversation_id];
+        if (entry.status === "ok" && feed && feed.stale) {
+          st.className = "status-stale";
+          st.textContent = "stale " + daysSince(feed.latest_message_time) + "d";
+          st.title =
+            "Harvested fine, but no new content since " +
+            new Date(feed.latest_message_time).toLocaleDateString();
+        } else {
+          st.className = "status-" + entry.status;
+          st.textContent = entry.status;
+        }
+
         item.appendChild(label);
         item.appendChild(st);
         convList.appendChild(item);
       }
     }
+  }
+
+  function daysSince(ms) {
+    return Math.floor((Date.now() - ms) / 86400000);
   }
 
   function relativeTime(iso) {

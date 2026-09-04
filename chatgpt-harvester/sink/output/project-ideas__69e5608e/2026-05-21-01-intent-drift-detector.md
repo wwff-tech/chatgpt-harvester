@@ -110,6 +110,6 @@ High
 - https://opentelemetry.io/
 - https://martinfowler.com/articles/architecture-decision-records.html
 
-Supported by current trends around governance and intent-centric engineering. citeturn0academia58turn0search15
+Supported by current trends around governance and intent-centric engineering. 
 
 ---

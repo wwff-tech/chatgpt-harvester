@@ -1,14 +1,14 @@
 ---
 date: 2026-05-12
 item_number: 3
-title: “Config Change Lineage Tracker”
+title: Config Change Lineage Tracker
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Config Change Lineage Tracker”
+# 3. Config Change Lineage Tracker
 
 
 **Problem**  
@@ -25,7 +25,7 @@ Infrastructure changes are tracked individually, but not as part of a causal cha
 **Tech hints**
 - Git integration  
 - Change-event correlation  
-- Integration with entity["software","Terraform","infrastructure as code tool"]  
+- Integration with Terraform  
 - Time-series + graph DB  
 
 **Formats**

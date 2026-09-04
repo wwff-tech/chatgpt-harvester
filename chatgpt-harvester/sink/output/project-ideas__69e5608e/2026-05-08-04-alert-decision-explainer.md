@@ -1,14 +1,14 @@
 ---
 date: 2026-05-08
 item_number: 4
-title: “Alert Decision Explainer”
+title: Alert Decision Explainer
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Alert Decision Explainer”
+# 4. Alert Decision Explainer
 
 
 **Problem**  
@@ -25,7 +25,7 @@ Engineers receive alerts without understanding:
 **Tech hints**
 - Rule tracing  
 - Threshold change tracking  
-- Integration with entity["software","Prometheus","monitoring toolkit"] and entity["software","Grafana","visualisation platform"]  
+- Integration with Prometheus and Grafana  
 
 **Formats**
 - Alerting plugin  

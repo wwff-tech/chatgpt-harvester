@@ -1,14 +1,14 @@
 ---
 date: 2026-05-14
 item_number: 4
-title: “Policy Complexity Auditor”
+title: Policy Complexity Auditor
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Policy Complexity Auditor”
+# 4. Policy Complexity Auditor
 
 
 **Problem**  
@@ -22,7 +22,7 @@ Security and compliance policies grow into complex, hard-to-understand rule sets
 **Tech hints**
 - Policy graph modelling  
 - Constraint analysis  
-- Integration with entity["software","Open Policy Agent","policy engine"]  
+- Integration with Open Policy Agent  
 
 **Formats**
 - CLI auditor  

@@ -1,14 +1,14 @@
 ---
 date: 2026-04-25
 item_number: 6
-title: “Context Window Optimiser for LLM Workflows”
+title: Context Window Optimiser for LLM Workflows
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 6. “Context Window Optimiser for LLM Workflows”
+## 6. Context Window Optimiser for LLM Workflows
 
 
 **Problem**  

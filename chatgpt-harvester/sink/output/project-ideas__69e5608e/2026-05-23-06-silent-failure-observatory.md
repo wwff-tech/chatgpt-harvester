@@ -27,7 +27,7 @@ Modern AI systems increasingly fail silently:
 - escalating costs,
 - behavioural drift.
 
-This is becoming a major observability theme. citeturn0search7turn0search9turn0search13
+This is becoming a major observability theme. 
 
 ## Approaches
 
@@ -93,6 +93,6 @@ High
 
 ## References
 
-- AI observability trends citeturn0search7turn0search9turn0search13
+- AI observability trends 
 
 ---

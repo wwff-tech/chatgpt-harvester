@@ -19,7 +19,7 @@ Modern failures emerge across sequences of actions, not single events:
 - agent handoffs,
 - human interruptions.
 
-Traditional observability tools struggle to reconstruct causal trajectories. citeturn0search5turn0search9
+Traditional observability tools struggle to reconstruct causal trajectories. 
 
 ### Approaches
 - Build causal timelines from telemetry + actions

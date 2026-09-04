@@ -1,14 +1,14 @@
 ---
 date: 2026-05-18
 item_number: 3
-title: “Agent Goal Alignment Monitor”
+title: Agent Goal Alignment Monitor
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Agent Goal Alignment Monitor”
+# 3. Agent Goal Alignment Monitor
 
 
 **Problem**  
@@ -25,7 +25,7 @@ Agents optimise intermediate steps but drift from overall goals:
 **Tech hints**
 - Goal representation models  
 - Step scoring vs goal alignment  
-- Integration with entity["software","Model Context Protocol","AI interaction protocol"]  
+- Integration with Model Context Protocol  
 - Trace analysis  
 
 **Formats**

@@ -26,7 +26,7 @@ But they rarely understand:
 - dependency meaning,
 - operational relationships.
 
-AI agents repeatedly spend tokens reconstructing topology from raw telemetry. citeturn0academia45
+AI agents repeatedly spend tokens reconstructing topology from raw telemetry. 
 
 ## Approaches
 
@@ -98,8 +98,8 @@ High
 
 ## References
 
-- entity["software","OpenTelemetry","observability framework"]
-- SREGym benchmark citeturn0academia42
-- Causely paper citeturn0academia45
+- OpenTelemetry
+- SREGym benchmark 
+- Causely paper 
 
 ---

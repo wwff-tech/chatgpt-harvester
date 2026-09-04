@@ -1,14 +1,14 @@
 ---
 date: 2026-05-17
 item_number: 2
-title: “Auto-Remediation Accountability Layer”
+title: Auto-Remediation Accountability Layer
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Auto-Remediation Accountability Layer”
+# 2. Auto-Remediation Accountability Layer
 
 
 **Problem**  
@@ -24,7 +24,7 @@ Automated remediation systems act without clear traceability:
 
 **Tech hints**
 - Integration with SRE tooling (alerts, runbooks)  
-- Policy-as-code via entity["software","Open Policy Agent","policy engine"]  
+- Policy-as-code via Open Policy Agent  
 - Audit logging pipelines  
 
 **Formats**

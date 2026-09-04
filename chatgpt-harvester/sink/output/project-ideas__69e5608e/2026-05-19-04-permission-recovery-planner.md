@@ -1,14 +1,14 @@
 ---
 date: 2026-05-19
 item_number: 4
-title: “Permission Recovery Planner”
+title: Permission Recovery Planner
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Permission Recovery Planner”
+# 4. Permission Recovery Planner
 
 
 **Problem**  
@@ -26,7 +26,7 @@ Least-privilege systems often lack recoverability planning.
 
 **Tech hints**
 - IAM graph analysis  
-- Policy-as-code via entity["software","Open Policy Agent","policy engine"]  
+- Policy-as-code via Open Policy Agent  
 - Cloud provider APIs  
 - Privilege simulation  
 

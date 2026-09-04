@@ -1,14 +1,14 @@
 ---
 date: 2026-05-06
 item_number: 3
-title: “Operational Drift Radar”
+title: Operational Drift Radar
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Operational Drift Radar”
+# 3. Operational Drift Radar
 
 
 **Problem**  

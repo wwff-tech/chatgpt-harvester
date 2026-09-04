@@ -1,14 +1,14 @@
 ---
 date: 2026-05-08
 item_number: 6
-title: “Personal Decision Journal (Automatic)”
+title: Personal Decision Journal (Automatic)
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 6. “Personal Decision Journal (Automatic)”
+# 6. Personal Decision Journal (Automatic)
 
 
 **Problem**  

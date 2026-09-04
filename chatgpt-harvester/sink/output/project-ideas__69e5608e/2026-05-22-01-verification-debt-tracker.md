@@ -100,8 +100,8 @@ High
 
 ## References
 
-- entity["software","OpenTelemetry","observability framework"]
+- OpenTelemetry
 - https://martinfowler.com/
-- Research on verification-first engineering citeturn0academia19turn0academia15
+- Research on verification-first engineering 
 
 ---

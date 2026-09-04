@@ -1,14 +1,14 @@
 ---
 date: 2026-05-04
 item_number: 1
-title: “Dynamic Blast Radius Controller”
+title: Dynamic Blast Radius Controller
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 1. “Dynamic Blast Radius Controller”
+## 1. Dynamic Blast Radius Controller
 
 
 **Problem**  
@@ -22,7 +22,7 @@ Changes (deployments, agent actions, config updates) often have poorly constrain
 **Tech hints**
 - Progressive delivery (canary + feature flags)  
 - Feedback loops from metrics (latency, error rate)  
-- Integration with service mesh (e.g., entity["software","Istio","service mesh"]) or API gateways  
+- Integration with service mesh (e.g., Istio) or API gateways  
 
 **Formats**
 - Kubernetes controller  

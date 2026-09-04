@@ -20,7 +20,7 @@ Increasing discussions around:
 - supply-chain risk,
 - geopolitical technology dependencies,
 
-are pushing organisations toward infrastructure sovereignty concerns. citeturn0news50
+are pushing organisations toward infrastructure sovereignty concerns. 
 
 Most organisations cannot answer:
 
@@ -91,4 +91,4 @@ Medium
 
 ## References
 
-- Enterprise AI governance trends citeturn0news50
+- Enterprise AI governance trends

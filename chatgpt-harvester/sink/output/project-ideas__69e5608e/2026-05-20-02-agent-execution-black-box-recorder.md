@@ -1,14 +1,14 @@
 ---
 date: 2026-05-20
 item_number: 2
-title: “Agent Execution Black Box Recorder”
+title: Agent Execution Black Box Recorder
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Agent Execution Black Box Recorder”
+# 2. Agent Execution Black Box Recorder
 
 
 ## Problem
@@ -24,7 +24,7 @@ Current discussions increasingly focus on:
 - auditability,
 - rollback,
 - bounded autonomy,
-- workflow-centred evaluation. citeturn0news42turn0academia47turn0academia45
+- workflow-centred evaluation. 
 
 ## Approaches
 - Record all agent actions as replayable timelines  
@@ -37,7 +37,7 @@ Current discussions increasingly focus on:
 - Immutable logs  
 - Git patch replay  
 - SQLite/DuckDB local-first execution store  
-- MCP integration via entity["software","Model Context Protocol","AI interaction protocol"]  
+- MCP integration via Model Context Protocol  
 
 ## Suggested formats
 - Agent middleware  
@@ -46,7 +46,7 @@ Current discussions increasingly focus on:
 - CI/CD audit layer  
 
 ## Why it is a good fit
-- Agentic coding is accelerating rapidly citeturn0search13turn0search17turn0news35
+- Agentic coding is accelerating rapidly 
 - Enterprises increasingly demand governance and auditability  
 - Strong overlap with AI safety discussions  
 

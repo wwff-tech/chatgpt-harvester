@@ -1,14 +1,14 @@
 ---
 date: 2026-05-06
 item_number: 5
-title: “LLM Supply Chain Inspector”
+title: LLM Supply Chain Inspector
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 5. “LLM Supply Chain Inspector”
+# 5. LLM Supply Chain Inspector
 
 
 **Problem**  

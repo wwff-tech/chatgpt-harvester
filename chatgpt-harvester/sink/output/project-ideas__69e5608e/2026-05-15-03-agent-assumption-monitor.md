@@ -1,14 +1,14 @@
 ---
 date: 2026-05-15
 item_number: 3
-title: “Agent Assumption Monitor”
+title: Agent Assumption Monitor
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Agent Assumption Monitor”
+# 3. Agent Assumption Monitor
 
 
 **Problem**  
@@ -26,7 +26,7 @@ These assumptions often fail silently.
 
 **Tech hints**
 - Step-level metadata tracking  
-- Integration with agent protocols like entity["software","Model Context Protocol","AI interaction protocol"]  
+- Integration with agent protocols like Model Context Protocol  
 - Heuristic or probabilistic validation  
 - Structured trace logs  
 

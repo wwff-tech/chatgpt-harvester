@@ -1,14 +1,14 @@
 ---
 date: 2026-05-11
 item_number: 4
-title: “Policy Coherence Analyzer”
+title: Policy Coherence Analyzer
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 4. “Policy Coherence Analyzer”
+# 4. Policy Coherence Analyzer
 
 
 **Problem**  
@@ -22,7 +22,7 @@ Security and compliance policies are individually valid but collectively inconsi
 **Tech hints**
 - Policy graph modelling  
 - Constraint solving  
-- Integration with entity["software","Open Policy Agent","policy engine"]  
+- Integration with Open Policy Agent  
 
 **Formats**
 - CLI analyser  

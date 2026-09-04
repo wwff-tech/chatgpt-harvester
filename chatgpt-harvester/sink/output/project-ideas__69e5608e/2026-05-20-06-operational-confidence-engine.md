@@ -1,14 +1,14 @@
 ---
 date: 2026-05-20
 item_number: 6
-title: “Operational Confidence Engine”
+title: Operational Confidence Engine
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 6. “Operational Confidence Engine”
+# 6. Operational Confidence Engine
 
 
 ## Problem
@@ -22,7 +22,7 @@ This creates over-trust.
 Current AI operations discussions increasingly revolve around:
 - bounded autonomy,
 - human checkpoints,
-- rollback-aware scoring. citeturn0news38turn0academia47
+- rollback-aware scoring. 
 
 ## Approaches
 - Compute operational confidence scores  

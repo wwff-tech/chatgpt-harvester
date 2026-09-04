@@ -1,14 +1,14 @@
 ---
 date: 2026-05-17
 item_number: 3
-title: “Agent Responsibility Tracker”
+title: Agent Responsibility Tracker
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 3. “Agent Responsibility Tracker”
+# 3. Agent Responsibility Tracker
 
 
 **Problem**  
@@ -24,7 +24,7 @@ Agent systems perform actions without clear responsibility boundaries:
 
 **Tech hints**
 - Step-level metadata tracking  
-- Integration with protocols like entity["software","Model Context Protocol","AI interaction protocol"]  
+- Integration with protocols like Model Context Protocol  
 - Structured logs and trace correlation  
 
 **Formats**

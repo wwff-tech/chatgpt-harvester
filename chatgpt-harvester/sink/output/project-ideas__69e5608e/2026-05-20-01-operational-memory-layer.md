@@ -1,14 +1,14 @@
 ---
 date: 2026-05-20
 item_number: 1
-title: “Operational Memory Layer”
+title: Operational Memory Layer
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 1. “Operational Memory Layer”
+# 1. Operational Memory Layer
 
 
 ## Problem
@@ -36,7 +36,7 @@ This creates:
 - Knowledge graph storage  
 
 Use:
-- entity["software","OpenTelemetry","observability framework"]
+- OpenTelemetry
 - graph DBs,
 - semantic embeddings,
 - immutable append-only logs.
@@ -51,7 +51,7 @@ Use:
 ## Why it is a good fit
 - Strong SRE pain point  
 - Organisational memory is massively undervalued  
-- Fits current “AI observability” discussions citeturn0search1turn0search2turn0search15
+- Fits current “AI observability” discussions 
 
 ## Why it is not a good fit
 - Requires cultural adoption  

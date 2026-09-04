@@ -21,7 +21,7 @@ Coordination failures (timeouts, mismatched expectations, retries) are hard to s
 - Detect mismatches (timing, schema, intent)  
 
 **Tech hints**
-- Extend entity["software","OpenTelemetry","observability framework"] with interaction spans  
+- Extend OpenTelemetry with interaction spans  
 - Correlation IDs across systems  
 - Graph modelling of interactions  
 - Contract validation at runtime  

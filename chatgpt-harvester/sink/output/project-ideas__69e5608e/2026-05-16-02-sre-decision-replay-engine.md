@@ -1,14 +1,14 @@
 ---
 date: 2026-05-16
 item_number: 2
-title: “SRE Decision Replay Engine”
+title: SRE Decision Replay Engine
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “SRE Decision Replay Engine”
+# 2. SRE Decision Replay Engine
 
 
 **Problem**  
@@ -22,7 +22,7 @@ Operational decisions (failover, scaling, mitigation) are not easily replayable 
 **Tech hints**
 - Incident timeline reconstruction  
 - Simulation frameworks  
-- Integration with tools like entity["software","Prometheus","monitoring toolkit"]  
+- Integration with tools like Prometheus  
 - Deterministic replay where possible  
 
 **Formats**

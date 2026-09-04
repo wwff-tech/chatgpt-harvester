@@ -1,14 +1,14 @@
 ---
 date: 2026-04-26
 item_number: 5
-title: “Shadow Dependency Detector”
+title: Shadow Dependency Detector
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-## 5. “Shadow Dependency Detector”
+## 5. Shadow Dependency Detector
 
 
 **Problem**  

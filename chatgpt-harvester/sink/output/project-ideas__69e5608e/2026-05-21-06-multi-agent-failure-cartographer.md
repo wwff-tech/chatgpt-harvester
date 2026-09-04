@@ -19,7 +19,7 @@ As organisations move toward multi-agent architectures:
 - ownership becomes unclear,
 - root causes become opaque.
 
-Governance and observability are repeatedly highlighted as missing pieces in agent ecosystems. citeturn0search15turn0search19
+Governance and observability are repeatedly highlighted as missing pieces in agent ecosystems. 
 
 ## Approaches
 

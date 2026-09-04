@@ -1,14 +1,14 @@
 ---
 date: 2026-05-07
 item_number: 2
-title: “Safe Rollback Orchestrator”
+title: Safe Rollback Orchestrator
 interests:
 suggested_points:
 conversation_id: 69e5608e-48c0-83eb-9533-b3a6d9e148c7
 label: project ideas
 ---
 
-# 2. “Safe Rollback Orchestrator”
+# 2. Safe Rollback Orchestrator
 
 
 **Problem**  
@@ -22,7 +22,7 @@ Rollback is often treated as a blunt tool — but in distributed systems and age
 **Tech hints**
 - Dependency graphs  
 - State snapshotting  
-- Integration with deployment tools (e.g., entity["software","Kubernetes","container orchestration platform"])  
+- Integration with deployment tools (e.g., Kubernetes)  
 - Feature flag systems  
 
 **Formats**

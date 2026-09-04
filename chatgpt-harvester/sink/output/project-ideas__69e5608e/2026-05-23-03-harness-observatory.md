@@ -23,7 +23,7 @@ memory layers,
 permissions,
 workflow orchestration,
 
-all affect outcomes dramatically. citeturn0academia43
+all affect outcomes dramatically. 
 
 Yet almost nobody monitors harness quality.
 
@@ -92,7 +92,7 @@ High
 
 ## References
 
-- Agentic Harness Engineering citeturn0academia43
-- Agent observability trends citeturn0search13turn0search9
+- Agentic Harness Engineering 
+- Agent observability trends 
 
 ---

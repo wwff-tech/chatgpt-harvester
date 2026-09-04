@@ -24,7 +24,7 @@ Organisations struggle to understand:
 
 > What can this agent actually do?
 
-Agent security research increasingly highlights memory, delegation, credential handling, and inter-agent trust as major attack surfaces. citeturn0academia20turn0news17
+Agent security research increasingly highlights memory, delegation, credential handling, and inter-agent trust as major attack surfaces. 
 
 ## Approaches
 
@@ -53,8 +53,8 @@ Identify excessive privilege and escalation paths.
 
 Use:
 
-- entity["software","Model Context Protocol","AI interaction protocol"]
-- entity["software","Open Policy Agent","policy engine"]
+- Model Context Protocol
+- Open Policy Agent
 
 ## Suggested Formats
 
@@ -95,7 +95,7 @@ High
 
 ## References
 
-- Agent security survey research citeturn0academia20
-- Agent governance discussions citeturn0news14turn0news17
+- Agent security survey research 
+- Agent governance discussions 
 
 ---

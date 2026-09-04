@@ -47,7 +47,7 @@ Calculate organisational risk accumulation.
 
 Use:
 
-entity["software","Open Policy Agent","policy engine"]
+Open Policy Agent
 
 ## Suggested Formats
 

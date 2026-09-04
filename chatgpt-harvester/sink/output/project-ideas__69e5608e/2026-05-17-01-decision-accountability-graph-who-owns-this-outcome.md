@@ -21,7 +21,7 @@ Actions and decisions lack clear ownership, especially in automated systems.
 
 **Tech hints**
 - Graph databases (e.g. Neo4j-style models)  
-- Event ingestion via entity["software","OpenTelemetry","observability framework"]  
+- Event ingestion via OpenTelemetry  
 - Identity mapping (users, services, agents)  
 - Immutable event logs  
 

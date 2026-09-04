@@ -20,7 +20,7 @@ The rapid rise of MCP ecosystems introduces:
 - prompt injection paths,
 - registry compromise risks.
 
-Recent disclosures demonstrated serious MCP-related attack surfaces. citeturn0news41
+Recent disclosures demonstrated serious MCP-related attack surfaces. 
 
 ## Approaches
 
@@ -86,7 +86,7 @@ High
 
 ## References
 
-- entity["software","Model Context Protocol","AI interaction protocol"]
-- MCP vulnerability reporting citeturn0news41
+- Model Context Protocol
+- MCP vulnerability reporting 
 
 ---
