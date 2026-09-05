@@ -276,6 +276,20 @@ def _strip_emphasis(value: str) -> str:
     return value
 
 
+def _report_dropped(date: str, before: set[str], written: set[str]) -> None:
+    """Name files that existed for this date and are not being rewritten.
+
+    Only the genuine drops. A run rewrites every date it processes, so
+    reporting each one would say "superseded" about a hundred and fifty
+    dates that did not change and bury the one that did.
+    """
+    dropped = sorted(before - written)
+    if dropped:
+        print(f"  {date}: dropped {len(dropped)} superseded file(s)")
+        for name in dropped[:5]:
+            print(f"    {name}")
+
+
 def _extract_field(body: str, *names: str) -> str | None:
     """Value of a labelled field, in any of the layouts the feeds have used.
 
@@ -418,6 +432,31 @@ def _feed_dir(meta: dict) -> str:
 #  Output writers
 # ---------------------------------------------------------------------------
 
+def _existing_for_date(feed_dir: Path, date: str) -> set[str]:
+    return {p.name for p in feed_dir.glob(f"{date}-*.md")} | {
+        p.name for p in feed_dir.glob(f"{date}.md")
+    }
+
+
+def _clear_date(feed_dir: Path, date: str) -> int:
+    """Remove any output already written for this date.
+
+    A feed can post more than once in a day -- 2026-09-04 carried a morning
+    scan and an evening update -- and write_items deliberately takes the
+    latest parseable message. Without this, the earlier batch stays on disk
+    under its own slugs, indistinguishable by filename from the current one,
+    and anything ingesting the directory reads both.
+
+    So each (feed, date) is regenerated wholesale rather than merged into.
+    Deleting generated files is safe: they are rebuilt from data/ on the
+    next run, which is the only reason this is a delete rather than a merge.
+    """
+    stale = sorted(feed_dir.glob(f"{date}-*.md")) + sorted(feed_dir.glob(f"{date}.md"))
+    for path in stale:
+        path.unlink()
+    return len(stale)
+
+
 def write_daily(date: str, messages: list[Message], meta: dict, outdir: Path):
     assistant_msgs = [m for m in messages if m.role == "assistant"]
     if not assistant_msgs:
@@ -439,7 +478,10 @@ def write_daily(date: str, messages: list[Message], meta: dict, outdir: Path):
     content = fm + "\n\n" + "\n\n".join(body_parts) + "\n"
     feed_dir = outdir / _feed_dir(meta)
     feed_dir.mkdir(parents=True, exist_ok=True)
+    before = _existing_for_date(feed_dir, date)
+    _clear_date(feed_dir, date)
     path = feed_dir / f"{date}.md"
+    _report_dropped(date, before, {path.name})
     path.write_text(content)
     print(f"  wrote {path}")
 
@@ -466,6 +508,9 @@ def write_items(date: str, messages: list[Message], meta: dict, outdir: Path):
 
     feed_dir = outdir / _feed_dir(meta)
     feed_dir.mkdir(parents=True, exist_ok=True)
+    before = _existing_for_date(feed_dir, date)
+    _clear_date(feed_dir, date)
+    written: set[str] = set()
 
     for item in chosen_items:
             fm = _frontmatter({
@@ -486,7 +531,10 @@ def write_items(date: str, messages: list[Message], meta: dict, outdir: Path):
             content = fm + "\n\n" + item.raw + "\n"
             path = feed_dir / filename
             path.write_text(content)
+            written.add(filename)
             print(f"  wrote {path}")
+
+    _report_dropped(date, before, written)
 
 
 # ---------------------------------------------------------------------------
